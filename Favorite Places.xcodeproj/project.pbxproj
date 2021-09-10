@@ -8,13 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		81FA280326EBCE3F00251B65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA280226EBCE3F00251B65 /* AppDelegate.swift */; };
-		81FA280526EBCE3F00251B65 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA280426EBCE3F00251B65 /* SceneDelegate.swift */; };
-		81FA280726EBCE3F00251B65 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA280626EBCE3F00251B65 /* ViewController.swift */; };
-		81FA280A26EBCE3F00251B65 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81FA280826EBCE3F00251B65 /* Main.storyboard */; };
 		81FA280C26EBCE3F00251B65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81FA280B26EBCE3F00251B65 /* Assets.xcassets */; };
 		81FA280F26EBCE3F00251B65 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81FA280D26EBCE3F00251B65 /* LaunchScreen.storyboard */; };
 		81FA281A26EBCE4000251B65 /* Favorite_PlacesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA281926EBCE4000251B65 /* Favorite_PlacesTests.swift */; };
 		81FA282526EBCE4000251B65 /* Favorite_PlacesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA282426EBCE4000251B65 /* Favorite_PlacesUITests.swift */; };
+		81FA283326EBCF0000251B65 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA283226EBCF0000251B65 /* LandingViewController.swift */; };
+		81FA283526EBD0E300251B65 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA283426EBD0E300251B65 /* UIImageExtension.swift */; };
+		81FA283726EBD23E00251B65 /* FavoritePlacesLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA283626EBD23E00251B65 /* FavoritePlacesLabel.swift */; };
+		81FA283926EBD28A00251B65 /* LabelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA283826EBD28A00251B65 /* LabelType.swift */; };
+		81FA283B26EBD43200251B65 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA283A26EBD43200251B65 /* UIViewExtension.swift */; };
+		81FA284626EBD8C500251B65 /* FavoritePlacesButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA284526EBD8C500251B65 /* FavoritePlacesButton.swift */; };
+		81FA284826EBD8F900251B65 /* ButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA284726EBD8F900251B65 /* ButtonType.swift */; };
+		81FA284A26EBE4D900251B65 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA284926EBE4D900251B65 /* UIColorExtension.swift */; };
+		81FA284C26EBED3B00251B65 /* FavoritePlacesNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA284B26EBED3B00251B65 /* FavoritePlacesNavigationController.swift */; };
+		81FA284E26EBEDA700251B65 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA284D26EBEDA700251B65 /* SignupViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,9 +44,6 @@
 /* Begin PBXFileReference section */
 		81FA27FF26EBCE3F00251B65 /* Favorite Places.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Favorite Places.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81FA280226EBCE3F00251B65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		81FA280426EBCE3F00251B65 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		81FA280626EBCE3F00251B65 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		81FA280926EBCE3F00251B65 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		81FA280B26EBCE3F00251B65 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		81FA280E26EBCE3F00251B65 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		81FA281026EBCE3F00251B65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +53,16 @@
 		81FA282026EBCE4000251B65 /* Favorite PlacesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Favorite PlacesUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81FA282426EBCE4000251B65 /* Favorite_PlacesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite_PlacesUITests.swift; sourceTree = "<group>"; };
 		81FA282626EBCE4000251B65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		81FA283226EBCF0000251B65 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
+		81FA283426EBD0E300251B65 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		81FA283626EBD23E00251B65 /* FavoritePlacesLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePlacesLabel.swift; sourceTree = "<group>"; };
+		81FA283826EBD28A00251B65 /* LabelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelType.swift; sourceTree = "<group>"; };
+		81FA283A26EBD43200251B65 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		81FA284526EBD8C500251B65 /* FavoritePlacesButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePlacesButton.swift; sourceTree = "<group>"; };
+		81FA284726EBD8F900251B65 /* ButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonType.swift; sourceTree = "<group>"; };
+		81FA284926EBE4D900251B65 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		81FA284B26EBED3B00251B65 /* FavoritePlacesNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePlacesNavigationController.swift; sourceTree = "<group>"; };
+		81FA284D26EBEDA700251B65 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,12 +113,13 @@
 		81FA280126EBCE3F00251B65 /* Favorite Places */ = {
 			isa = PBXGroup;
 			children = (
-				81FA280226EBCE3F00251B65 /* AppDelegate.swift */,
-				81FA280426EBCE3F00251B65 /* SceneDelegate.swift */,
-				81FA280626EBCE3F00251B65 /* ViewController.swift */,
-				81FA280826EBCE3F00251B65 /* Main.storyboard */,
-				81FA280B26EBCE3F00251B65 /* Assets.xcassets */,
-				81FA280D26EBCE3F00251B65 /* LaunchScreen.storyboard */,
+				81FA284326EBD87300251B65 /* Custom component */,
+				81FA284126EBD85500251B65 /* Extension */,
+				81FA284026EBD84100251B65 /* Enum */,
+				81FA283C26EBD80900251B65 /* View Controller */,
+				81FA283F26EBD82600251B65 /* View */,
+				81FA283E26EBD81200251B65 /* Model */,
+				81FA284426EBD89F00251B65 /* Essential */,
 				81FA281026EBCE3F00251B65 /* Info.plist */,
 			);
 			path = "Favorite Places";
@@ -126,6 +141,68 @@
 				81FA282626EBCE4000251B65 /* Info.plist */,
 			);
 			path = "Favorite PlacesUITests";
+			sourceTree = "<group>";
+		};
+		81FA283C26EBD80900251B65 /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				81FA283226EBCF0000251B65 /* LandingViewController.swift */,
+				81FA284D26EBEDA700251B65 /* SignupViewController.swift */,
+			);
+			path = "View Controller";
+			sourceTree = "<group>";
+		};
+		81FA283E26EBD81200251B65 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		81FA283F26EBD82600251B65 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		81FA284026EBD84100251B65 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				81FA283826EBD28A00251B65 /* LabelType.swift */,
+				81FA284726EBD8F900251B65 /* ButtonType.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
+		81FA284126EBD85500251B65 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				81FA283A26EBD43200251B65 /* UIViewExtension.swift */,
+				81FA283426EBD0E300251B65 /* UIImageExtension.swift */,
+				81FA284926EBE4D900251B65 /* UIColorExtension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		81FA284326EBD87300251B65 /* Custom component */ = {
+			isa = PBXGroup;
+			children = (
+				81FA283626EBD23E00251B65 /* FavoritePlacesLabel.swift */,
+				81FA284526EBD8C500251B65 /* FavoritePlacesButton.swift */,
+				81FA284B26EBED3B00251B65 /* FavoritePlacesNavigationController.swift */,
+			);
+			path = "Custom component";
+			sourceTree = "<group>";
+		};
+		81FA284426EBD89F00251B65 /* Essential */ = {
+			isa = PBXGroup;
+			children = (
+				81FA280226EBCE3F00251B65 /* AppDelegate.swift */,
+				81FA280B26EBCE3F00251B65 /* Assets.xcassets */,
+				81FA280D26EBCE3F00251B65 /* LaunchScreen.storyboard */,
+			);
+			path = Essential;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,7 +310,6 @@
 			files = (
 				81FA280F26EBCE3F00251B65 /* LaunchScreen.storyboard in Resources */,
 				81FA280C26EBCE3F00251B65 /* Assets.xcassets in Resources */,
-				81FA280A26EBCE3F00251B65 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,9 +334,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81FA280726EBCE3F00251B65 /* ViewController.swift in Sources */,
+				81FA283B26EBD43200251B65 /* UIViewExtension.swift in Sources */,
+				81FA284826EBD8F900251B65 /* ButtonType.swift in Sources */,
+				81FA284E26EBEDA700251B65 /* SignupViewController.swift in Sources */,
+				81FA283726EBD23E00251B65 /* FavoritePlacesLabel.swift in Sources */,
+				81FA284626EBD8C500251B65 /* FavoritePlacesButton.swift in Sources */,
+				81FA283926EBD28A00251B65 /* LabelType.swift in Sources */,
+				81FA284A26EBE4D900251B65 /* UIColorExtension.swift in Sources */,
 				81FA280326EBCE3F00251B65 /* AppDelegate.swift in Sources */,
-				81FA280526EBCE3F00251B65 /* SceneDelegate.swift in Sources */,
+				81FA283326EBCF0000251B65 /* LandingViewController.swift in Sources */,
+				81FA283526EBD0E300251B65 /* UIImageExtension.swift in Sources */,
+				81FA284C26EBED3B00251B65 /* FavoritePlacesNavigationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,14 +380,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		81FA280826EBCE3F00251B65 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				81FA280926EBCE3F00251B65 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		81FA280D26EBCE3F00251B65 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -438,6 +514,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Favorite Places/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -445,7 +522,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.frakton.Favorite-Places";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -456,6 +533,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Favorite Places/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -463,7 +541,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.frakton.Favorite-Places";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
