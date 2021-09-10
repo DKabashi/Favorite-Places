@@ -10,7 +10,11 @@ import UIKit
 class FavoritePlacesNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        isNavigationBarHidden = true
+        navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationBar.shadowImage = UIImage()
+        navigationBar.isTranslucent = true
+        view.backgroundColor = UIColor.clear
+        navigationBar.tintColor = .customLightBlue
         viewControllers = [LandingViewController()]
     }
 }

@@ -9,4 +9,5 @@ import UIKit
 
 extension UIColor {
     static let customLightBlue = UIColor(red: 0/255, green: 176/255, blue: 255/255, alpha: 1)
+    static let customTextFieldBlue = UIColor(red: 240/255, green: 245/255, blue: 254/255, alpha: 1)
 }

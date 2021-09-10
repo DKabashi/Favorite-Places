@@ -1,17 +1,14 @@
 //
-//  SignupViewController.swift
+//  LoginViewController.swift
 //  Favorite Places
 //
 //  Created by Donat Kabashi on 9/10/21.
 //
 
 import UIKit
-import RxCocoa
-import RxSwift
 
-class SignupViewController: UIViewController {
-    
-    let authenticationView = AuthenticationView(isLogin: false)
+class LoginViewController: UIViewController {
+    let authenticationView = AuthenticationView(isLogin: true)
     
     override func viewDidLoad() {
         super.viewDidLoad()

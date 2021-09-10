@@ -3,15 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		81FA280326EBCE3F00251B65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA280226EBCE3F00251B65 /* AppDelegate.swift */; };
 		81FA280C26EBCE3F00251B65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81FA280B26EBCE3F00251B65 /* Assets.xcassets */; };
 		81FA280F26EBCE3F00251B65 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81FA280D26EBCE3F00251B65 /* LaunchScreen.storyboard */; };
-		81FA281A26EBCE4000251B65 /* Favorite_PlacesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA281926EBCE4000251B65 /* Favorite_PlacesTests.swift */; };
-		81FA282526EBCE4000251B65 /* Favorite_PlacesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA282426EBCE4000251B65 /* Favorite_PlacesUITests.swift */; };
 		81FA283326EBCF0000251B65 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA283226EBCF0000251B65 /* LandingViewController.swift */; };
 		81FA283526EBD0E300251B65 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA283426EBD0E300251B65 /* UIImageExtension.swift */; };
 		81FA283726EBD23E00251B65 /* FavoritePlacesLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA283626EBD23E00251B65 /* FavoritePlacesLabel.swift */; };
@@ -21,7 +19,12 @@
 		81FA284826EBD8F900251B65 /* ButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA284726EBD8F900251B65 /* ButtonType.swift */; };
 		81FA284A26EBE4D900251B65 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA284926EBE4D900251B65 /* UIColorExtension.swift */; };
 		81FA284C26EBED3B00251B65 /* FavoritePlacesNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA284B26EBED3B00251B65 /* FavoritePlacesNavigationController.swift */; };
-		81FA284E26EBEDA700251B65 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA284D26EBEDA700251B65 /* SignupViewController.swift */; };
+		81FA285026EBF34300251B65 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA284F26EBF34300251B65 /* SignupViewController.swift */; };
+		81FA285226EBF34C00251B65 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA285126EBF34C00251B65 /* LoginViewController.swift */; };
+		81FA285426EBF4D900251B65 /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA285326EBF4D900251B65 /* AuthenticationView.swift */; };
+		81FA285626EBF65900251B65 /* CGFloatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA285526EBF65900251B65 /* CGFloatExtension.swift */; };
+		81FA285826EBFB2A00251B65 /* FavoritePlacesTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA285726EBFB2A00251B65 /* FavoritePlacesTextField.swift */; };
+		8C080668050ACC4A37FD3F0C /* Pods_Favorite_Places.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFA1B6CD43ADBAF0E9E6C904 /* Pods_Favorite_Places.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,11 +51,7 @@
 		81FA280E26EBCE3F00251B65 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		81FA281026EBCE3F00251B65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		81FA281526EBCE4000251B65 /* Favorite PlacesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Favorite PlacesTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		81FA281926EBCE4000251B65 /* Favorite_PlacesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite_PlacesTests.swift; sourceTree = "<group>"; };
-		81FA281B26EBCE4000251B65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		81FA282026EBCE4000251B65 /* Favorite PlacesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Favorite PlacesUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		81FA282426EBCE4000251B65 /* Favorite_PlacesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite_PlacesUITests.swift; sourceTree = "<group>"; };
-		81FA282626EBCE4000251B65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		81FA283226EBCF0000251B65 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		81FA283426EBD0E300251B65 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		81FA283626EBD23E00251B65 /* FavoritePlacesLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePlacesLabel.swift; sourceTree = "<group>"; };
@@ -62,7 +61,14 @@
 		81FA284726EBD8F900251B65 /* ButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonType.swift; sourceTree = "<group>"; };
 		81FA284926EBE4D900251B65 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		81FA284B26EBED3B00251B65 /* FavoritePlacesNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePlacesNavigationController.swift; sourceTree = "<group>"; };
-		81FA284D26EBEDA700251B65 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		81FA284F26EBF34300251B65 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		81FA285126EBF34C00251B65 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		81FA285326EBF4D900251B65 /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
+		81FA285526EBF65900251B65 /* CGFloatExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloatExtension.swift; sourceTree = "<group>"; };
+		81FA285726EBFB2A00251B65 /* FavoritePlacesTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePlacesTextField.swift; sourceTree = "<group>"; };
+		AFA1B6CD43ADBAF0E9E6C904 /* Pods_Favorite_Places.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Favorite_Places.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C76B9591F43680A745D1A159 /* Pods-Favorite Places.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Favorite Places.release.xcconfig"; path = "Target Support Files/Pods-Favorite Places/Pods-Favorite Places.release.xcconfig"; sourceTree = "<group>"; };
+		D8E1F90E255F40E8EBF58812 /* Pods-Favorite Places.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Favorite Places.debug.xcconfig"; path = "Target Support Files/Pods-Favorite Places/Pods-Favorite Places.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C080668050ACC4A37FD3F0C /* Pods_Favorite_Places.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,13 +97,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		56EDB96F050979042A97B2B1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D8E1F90E255F40E8EBF58812 /* Pods-Favorite Places.debug.xcconfig */,
+				C76B9591F43680A745D1A159 /* Pods-Favorite Places.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		81FA27F626EBCE3F00251B65 = {
 			isa = PBXGroup;
 			children = (
 				81FA280126EBCE3F00251B65 /* Favorite Places */,
-				81FA281826EBCE4000251B65 /* Favorite PlacesTests */,
-				81FA282326EBCE4000251B65 /* Favorite PlacesUITests */,
 				81FA280026EBCE3F00251B65 /* Products */,
+				56EDB96F050979042A97B2B1 /* Pods */,
+				F972BC5FD035E0B36C4B2FA9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -125,29 +141,12 @@
 			path = "Favorite Places";
 			sourceTree = "<group>";
 		};
-		81FA281826EBCE4000251B65 /* Favorite PlacesTests */ = {
-			isa = PBXGroup;
-			children = (
-				81FA281926EBCE4000251B65 /* Favorite_PlacesTests.swift */,
-				81FA281B26EBCE4000251B65 /* Info.plist */,
-			);
-			path = "Favorite PlacesTests";
-			sourceTree = "<group>";
-		};
-		81FA282326EBCE4000251B65 /* Favorite PlacesUITests */ = {
-			isa = PBXGroup;
-			children = (
-				81FA282426EBCE4000251B65 /* Favorite_PlacesUITests.swift */,
-				81FA282626EBCE4000251B65 /* Info.plist */,
-			);
-			path = "Favorite PlacesUITests";
-			sourceTree = "<group>";
-		};
 		81FA283C26EBD80900251B65 /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
 				81FA283226EBCF0000251B65 /* LandingViewController.swift */,
-				81FA284D26EBEDA700251B65 /* SignupViewController.swift */,
+				81FA284F26EBF34300251B65 /* SignupViewController.swift */,
+				81FA285126EBF34C00251B65 /* LoginViewController.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -162,6 +161,7 @@
 		81FA283F26EBD82600251B65 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				81FA285326EBF4D900251B65 /* AuthenticationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -181,6 +181,7 @@
 				81FA283A26EBD43200251B65 /* UIViewExtension.swift */,
 				81FA283426EBD0E300251B65 /* UIImageExtension.swift */,
 				81FA284926EBE4D900251B65 /* UIColorExtension.swift */,
+				81FA285526EBF65900251B65 /* CGFloatExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -191,6 +192,7 @@
 				81FA283626EBD23E00251B65 /* FavoritePlacesLabel.swift */,
 				81FA284526EBD8C500251B65 /* FavoritePlacesButton.swift */,
 				81FA284B26EBED3B00251B65 /* FavoritePlacesNavigationController.swift */,
+				81FA285726EBFB2A00251B65 /* FavoritePlacesTextField.swift */,
 			);
 			path = "Custom component";
 			sourceTree = "<group>";
@@ -205,6 +207,14 @@
 			path = Essential;
 			sourceTree = "<group>";
 		};
+		F972BC5FD035E0B36C4B2FA9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AFA1B6CD43ADBAF0E9E6C904 /* Pods_Favorite_Places.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -212,9 +222,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 81FA282926EBCE4000251B65 /* Build configuration list for PBXNativeTarget "Favorite Places" */;
 			buildPhases = (
+				445EF070B87B3DE55711675D /* [CP] Check Pods Manifest.lock */,
 				81FA27FB26EBCE3F00251B65 /* Sources */,
 				81FA27FC26EBCE3F00251B65 /* Frameworks */,
 				81FA27FD26EBCE3F00251B65 /* Resources */,
+				621D245962E4DCD573DB4BD8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -329,22 +341,68 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		445EF070B87B3DE55711675D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Favorite Places-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		621D245962E4DCD573DB4BD8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Favorite Places/Pods-Favorite Places-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Favorite Places/Pods-Favorite Places-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Favorite Places/Pods-Favorite Places-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		81FA27FB26EBCE3F00251B65 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81FA285226EBF34C00251B65 /* LoginViewController.swift in Sources */,
 				81FA283B26EBD43200251B65 /* UIViewExtension.swift in Sources */,
 				81FA284826EBD8F900251B65 /* ButtonType.swift in Sources */,
-				81FA284E26EBEDA700251B65 /* SignupViewController.swift in Sources */,
+				81FA285026EBF34300251B65 /* SignupViewController.swift in Sources */,
+				81FA285426EBF4D900251B65 /* AuthenticationView.swift in Sources */,
 				81FA283726EBD23E00251B65 /* FavoritePlacesLabel.swift in Sources */,
 				81FA284626EBD8C500251B65 /* FavoritePlacesButton.swift in Sources */,
 				81FA283926EBD28A00251B65 /* LabelType.swift in Sources */,
 				81FA284A26EBE4D900251B65 /* UIColorExtension.swift in Sources */,
 				81FA280326EBCE3F00251B65 /* AppDelegate.swift in Sources */,
+				81FA285626EBF65900251B65 /* CGFloatExtension.swift in Sources */,
 				81FA283326EBCF0000251B65 /* LandingViewController.swift in Sources */,
 				81FA283526EBD0E300251B65 /* UIImageExtension.swift in Sources */,
 				81FA284C26EBED3B00251B65 /* FavoritePlacesNavigationController.swift in Sources */,
+				81FA285826EBFB2A00251B65 /* FavoritePlacesTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,7 +410,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81FA281A26EBCE4000251B65 /* Favorite_PlacesTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,7 +417,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81FA282526EBCE4000251B65 /* Favorite_PlacesUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -509,6 +565,7 @@
 		};
 		81FA282A26EBCE4000251B65 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D8E1F90E255F40E8EBF58812 /* Pods-Favorite Places.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -528,6 +585,7 @@
 		};
 		81FA282B26EBCE4000251B65 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C76B9591F43680A745D1A159 /* Pods-Favorite Places.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

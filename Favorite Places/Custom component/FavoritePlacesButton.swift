@@ -11,7 +11,7 @@ class FavoritePlacesButton: UIButton {
     
     init(style: ButtonStyle) {
         super.init(frame: .zero)
-        layer.cornerRadius = 10
+        layer.cornerRadius = .defaultCornerRadius
         titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .bold)
         switch style {
         case .outline:
@@ -25,7 +25,7 @@ class FavoritePlacesButton: UIButton {
         case .squareWithImage:
             backgroundColor = .white
         }
-        
+        heightAnchor.constraint(equalToConstant: 60).isActive = true
     }
     
     required init?(coder: NSCoder) {
