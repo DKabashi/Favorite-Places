@@ -20,6 +20,7 @@ class AuthenticationView: UIView {
     private let alternativeAuthenticationButton = UIButton()
     private let disposeBag = DisposeBag()
     
+    let authenticationRequestWithModel = PublishRelay<AuthenticationModel>()
     var isLogin: Bool
     
     init(isLogin: Bool) {
@@ -100,6 +101,17 @@ class AuthenticationView: UIView {
         authenticateButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: .padding * 4).isActive = true
         authenticateButton.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).isActive = true
         authenticateButton.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor).isActive = true
+        observeAuthenticationButtonTap()
+    }
+    
+    private func observeAuthenticationButtonTap() {
+        authenticateButton.rx.tap.subscribe(onNext: { [weak self] _ in
+            guard let self = self, let email = self.emailTextField.text, let password = self.passwordTextField.text else { return }
+            if email.contains("@") && password.count > 4 {
+                let authModel = AuthenticationModel(email: email, password: password)
+                self.authenticationRequestWithModel.accept(authModel)
+            }
+        }).disposed(by: disposeBag)
     }
     
     private func setupAlternativeAuthenticationText() {

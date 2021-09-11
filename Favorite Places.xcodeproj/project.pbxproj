@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		81146ADA26EC9E1400EB6413 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81146AD926EC9E1400EB6413 /* GoogleService-Info.plist */; };
+		81146ADD26EC9FCC00EB6413 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81146ADC26EC9FCC00EB6413 /* AuthenticationManager.swift */; };
+		81146ADF26ECA24A00EB6413 /* AuthenticationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81146ADE26ECA24A00EB6413 /* AuthenticationModel.swift */; };
+		81146AE326ECA7FF00EB6413 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81146AE226ECA7FF00EB6413 /* User.swift */; };
+		81146AE526ECAD3500EB6413 /* AuthenticationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81146AE426ECAD3500EB6413 /* AuthenticationState.swift */; };
+		81146AE726ECADCF00EB6413 /* FavoritePlacesError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81146AE626ECADCF00EB6413 /* FavoritePlacesError.swift */; };
+		81146AE926ECB20000EB6413 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81146AE826ECB20000EB6413 /* MapViewController.swift */; };
+		81146AEC26ECBF2E00EB6413 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81146AEB26ECBF2E00EB6413 /* UIViewControllerExtension.swift */; };
 		81FA280326EBCE3F00251B65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA280226EBCE3F00251B65 /* AppDelegate.swift */; };
 		81FA280C26EBCE3F00251B65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81FA280B26EBCE3F00251B65 /* Assets.xcassets */; };
 		81FA280F26EBCE3F00251B65 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81FA280D26EBCE3F00251B65 /* LaunchScreen.storyboard */; };
@@ -47,6 +54,13 @@
 
 /* Begin PBXFileReference section */
 		81146AD926EC9E1400EB6413 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		81146ADC26EC9FCC00EB6413 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
+		81146ADE26ECA24A00EB6413 /* AuthenticationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationModel.swift; sourceTree = "<group>"; };
+		81146AE226ECA7FF00EB6413 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		81146AE426ECAD3500EB6413 /* AuthenticationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationState.swift; sourceTree = "<group>"; };
+		81146AE626ECADCF00EB6413 /* FavoritePlacesError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePlacesError.swift; sourceTree = "<group>"; };
+		81146AE826ECB20000EB6413 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		81146AEB26ECBF2E00EB6413 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		81FA27FF26EBCE3F00251B65 /* Favorite Places.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Favorite Places.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81FA280226EBCE3F00251B65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81FA280B26EBCE3F00251B65 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -108,6 +122,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		81146ADB26EC9F9000EB6413 /* Authentication service */ = {
+			isa = PBXGroup;
+			children = (
+				81146ADC26EC9FCC00EB6413 /* AuthenticationManager.swift */,
+			);
+			path = "Authentication service";
+			sourceTree = "<group>";
+		};
 		81FA27F626EBCE3F00251B65 = {
 			isa = PBXGroup;
 			children = (
@@ -131,12 +153,13 @@
 		81FA280126EBCE3F00251B65 /* Favorite Places */ = {
 			isa = PBXGroup;
 			children = (
-				81FA284326EBD87300251B65 /* Custom component */,
-				81FA284126EBD85500251B65 /* Extension */,
-				81FA284026EBD84100251B65 /* Enum */,
 				81FA283C26EBD80900251B65 /* View Controller */,
 				81FA283F26EBD82600251B65 /* View */,
 				81FA283E26EBD81200251B65 /* Model */,
+				81FA284026EBD84100251B65 /* Enum */,
+				81146ADB26EC9F9000EB6413 /* Authentication service */,
+				81FA284326EBD87300251B65 /* Custom component */,
+				81FA284126EBD85500251B65 /* Extension */,
 				81FA284426EBD89F00251B65 /* Essential */,
 				81FA281026EBCE3F00251B65 /* Info.plist */,
 			);
@@ -149,6 +172,7 @@
 				81FA283226EBCF0000251B65 /* LandingViewController.swift */,
 				81FA284F26EBF34300251B65 /* SignupViewController.swift */,
 				81FA285126EBF34C00251B65 /* LoginViewController.swift */,
+				81146AE826ECB20000EB6413 /* MapViewController.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -156,6 +180,8 @@
 		81FA283E26EBD81200251B65 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				81146ADE26ECA24A00EB6413 /* AuthenticationModel.swift */,
+				81146AE226ECA7FF00EB6413 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -173,6 +199,8 @@
 			children = (
 				81FA283826EBD28A00251B65 /* LabelType.swift */,
 				81FA284726EBD8F900251B65 /* ButtonType.swift */,
+				81146AE426ECAD3500EB6413 /* AuthenticationState.swift */,
+				81146AE626ECADCF00EB6413 /* FavoritePlacesError.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -184,6 +212,7 @@
 				81FA283426EBD0E300251B65 /* UIImageExtension.swift */,
 				81FA284926EBE4D900251B65 /* UIColorExtension.swift */,
 				81FA285526EBF65900251B65 /* CGFloatExtension.swift */,
+				81146AEB26ECBF2E00EB6413 /* UIViewControllerExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -392,7 +421,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81146AE526ECAD3500EB6413 /* AuthenticationState.swift in Sources */,
+				81146ADF26ECA24A00EB6413 /* AuthenticationModel.swift in Sources */,
+				81146AE726ECADCF00EB6413 /* FavoritePlacesError.swift in Sources */,
 				81FA285226EBF34C00251B65 /* LoginViewController.swift in Sources */,
+				81146ADD26EC9FCC00EB6413 /* AuthenticationManager.swift in Sources */,
 				81FA283B26EBD43200251B65 /* UIViewExtension.swift in Sources */,
 				81FA284826EBD8F900251B65 /* ButtonType.swift in Sources */,
 				81FA285026EBF34300251B65 /* SignupViewController.swift in Sources */,
@@ -401,11 +434,14 @@
 				81FA284626EBD8C500251B65 /* FavoritePlacesButton.swift in Sources */,
 				81FA283926EBD28A00251B65 /* LabelType.swift in Sources */,
 				81FA284A26EBE4D900251B65 /* UIColorExtension.swift in Sources */,
+				81146AE926ECB20000EB6413 /* MapViewController.swift in Sources */,
 				81FA280326EBCE3F00251B65 /* AppDelegate.swift in Sources */,
 				81FA285626EBF65900251B65 /* CGFloatExtension.swift in Sources */,
 				81FA283326EBCF0000251B65 /* LandingViewController.swift in Sources */,
+				81146AE326ECA7FF00EB6413 /* User.swift in Sources */,
 				81FA283526EBD0E300251B65 /* UIImageExtension.swift in Sources */,
 				81FA284C26EBED3B00251B65 /* FavoritePlacesNavigationController.swift in Sources */,
+				81146AEC26ECBF2E00EB6413 /* UIViewControllerExtension.swift in Sources */,
 				81FA285826EBFB2A00251B65 /* FavoritePlacesTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

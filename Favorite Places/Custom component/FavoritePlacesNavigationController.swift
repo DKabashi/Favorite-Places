@@ -8,6 +8,7 @@
 import UIKit
 
 class FavoritePlacesNavigationController: UINavigationController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -15,6 +16,12 @@ class FavoritePlacesNavigationController: UINavigationController {
         navigationBar.isTranslucent = true
         view.backgroundColor = UIColor.clear
         navigationBar.tintColor = .customLightBlue
-        viewControllers = [LandingViewController()]
+        
+        if AuthenticationManager.isAuthenticated {
+            viewControllers = [MapViewController()]
+        } else {
+            viewControllers = [LandingViewController()]
+        }
     }
+    
 }
