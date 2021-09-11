@@ -38,11 +38,7 @@ class FavoritePlacesAlertViewController: UIViewController {
         self.alternativeButtonCallback = alternativeButtonCallback
         super.init(nibName: nil, bundle: nil)
     }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-   
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -58,10 +54,10 @@ class FavoritePlacesAlertViewController: UIViewController {
 
     private func setupContainerView() {
         view.add(containerView)
-        containerView.backgroundColor       = .white
-        containerView.layer.cornerRadius    = 16
-        containerView.layer.borderWidth     = 2
-        containerView.layer.borderColor     = UIColor.white.cgColor
+        containerView.backgroundColor = .white
+        containerView.layer.cornerRadius = 16
+        containerView.layer.borderWidth = 2
+        containerView.layer.borderColor = UIColor.white.cgColor
         containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         containerView.widthAnchor.constraint(equalToConstant: 300).isActive = true
@@ -138,4 +134,9 @@ class FavoritePlacesAlertViewController: UIViewController {
     private func dismissVC() {
         dismiss(animated: true)
     }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+   
 }

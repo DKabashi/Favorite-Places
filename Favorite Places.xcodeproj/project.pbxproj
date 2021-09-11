@@ -16,6 +16,10 @@
 		81146AE926ECB20000EB6413 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81146AE826ECB20000EB6413 /* MapViewController.swift */; };
 		81146AEC26ECBF2E00EB6413 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81146AEB26ECBF2E00EB6413 /* UIViewControllerExtension.swift */; };
 		81146AEE26ECC78D00EB6413 /* FavoritePlacesAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81146AED26ECC78D00EB6413 /* FavoritePlacesAlertViewController.swift */; };
+		81146AF026ECE9A700EB6413 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81146AEF26ECE9A700EB6413 /* MapView.swift */; };
+		81146AF226ECEE5800EB6413 /* MKMapViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81146AF126ECEE5800EB6413 /* MKMapViewExtension.swift */; };
+		81146AF426ECEECD00EB6413 /* RxExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81146AF326ECEECD00EB6413 /* RxExtension.swift */; };
+		81146AF626ECF0DE00EB6413 /* FavoritePlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81146AF526ECF0DE00EB6413 /* FavoritePlace.swift */; };
 		81FA280326EBCE3F00251B65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA280226EBCE3F00251B65 /* AppDelegate.swift */; };
 		81FA280C26EBCE3F00251B65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81FA280B26EBCE3F00251B65 /* Assets.xcassets */; };
 		81FA280F26EBCE3F00251B65 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81FA280D26EBCE3F00251B65 /* LaunchScreen.storyboard */; };
@@ -63,6 +67,10 @@
 		81146AE826ECB20000EB6413 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		81146AEB26ECBF2E00EB6413 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		81146AED26ECC78D00EB6413 /* FavoritePlacesAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePlacesAlertViewController.swift; sourceTree = "<group>"; };
+		81146AEF26ECE9A700EB6413 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		81146AF126ECEE5800EB6413 /* MKMapViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKMapViewExtension.swift; sourceTree = "<group>"; };
+		81146AF326ECEECD00EB6413 /* RxExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxExtension.swift; sourceTree = "<group>"; };
+		81146AF526ECF0DE00EB6413 /* FavoritePlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePlace.swift; sourceTree = "<group>"; };
 		81FA27FF26EBCE3F00251B65 /* Favorite Places.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Favorite Places.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81FA280226EBCE3F00251B65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81FA280B26EBCE3F00251B65 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -184,6 +192,7 @@
 			children = (
 				81146ADE26ECA24A00EB6413 /* AuthenticationModel.swift */,
 				81146AE226ECA7FF00EB6413 /* User.swift */,
+				81146AF526ECF0DE00EB6413 /* FavoritePlace.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -192,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				81FA285326EBF4D900251B65 /* AuthenticationView.swift */,
+				81146AEF26ECE9A700EB6413 /* MapView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -215,6 +225,8 @@
 				81FA283426EBD0E300251B65 /* UIImageExtension.swift */,
 				81FA284926EBE4D900251B65 /* UIColorExtension.swift */,
 				81FA285526EBF65900251B65 /* CGFloatExtension.swift */,
+				81146AF126ECEE5800EB6413 /* MKMapViewExtension.swift */,
+				81146AF326ECEECD00EB6413 /* RxExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -425,6 +437,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81146AE526ECAD3500EB6413 /* AuthenticationState.swift in Sources */,
+				81146AF026ECE9A700EB6413 /* MapView.swift in Sources */,
 				81146ADF26ECA24A00EB6413 /* AuthenticationModel.swift in Sources */,
 				81146AE726ECADCF00EB6413 /* FavoritePlacesError.swift in Sources */,
 				81FA285226EBF34C00251B65 /* LoginViewController.swift in Sources */,
@@ -440,9 +453,12 @@
 				81146AE926ECB20000EB6413 /* MapViewController.swift in Sources */,
 				81146AEE26ECC78D00EB6413 /* FavoritePlacesAlertViewController.swift in Sources */,
 				81FA280326EBCE3F00251B65 /* AppDelegate.swift in Sources */,
+				81146AF426ECEECD00EB6413 /* RxExtension.swift in Sources */,
 				81FA285626EBF65900251B65 /* CGFloatExtension.swift in Sources */,
+				81146AF626ECF0DE00EB6413 /* FavoritePlace.swift in Sources */,
 				81FA283326EBCF0000251B65 /* LandingViewController.swift in Sources */,
 				81146AE326ECA7FF00EB6413 /* User.swift in Sources */,
+				81146AF226ECEE5800EB6413 /* MKMapViewExtension.swift in Sources */,
 				81FA283526EBD0E300251B65 /* UIImageExtension.swift in Sources */,
 				81FA284C26EBED3B00251B65 /* FavoritePlacesNavigationController.swift in Sources */,
 				81146AEC26ECBF2E00EB6413 /* UIViewControllerExtension.swift in Sources */,

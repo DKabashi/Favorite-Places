@@ -10,23 +10,19 @@ import RxCocoa
 import RxSwift
 
 class MapViewController: UIViewController {
-    let signOutButton = UIButton()
     let authenticationManager = AuthenticationManager()
+    let mapView = MapView()
     private var disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        view.addSubview(signOutButton)
-        signOutButton.frame = CGRect(x: 20, y: 40, width: 200, height: 100)
-        signOutButton.setTitle("Sign out", for: .normal)
-        signOutButton.setTitleColor(.red, for: .normal)
-        
-        signOutButton.rx.tap.subscribe(onNext: { [weak self] _ in
-            guard let self = self else { return }
-            self.authenticationManager.signOut()
-        }).disposed(by: disposeBag)
+        setupMapView()
         observeUserState()
+    }
+    
+    private func setupMapView() {
+        view.add(mapView)
+        mapView.pinToEdges(of: view)
     }
     
     private func observeUserState() {
