@@ -26,6 +26,7 @@ class MapViewController: UIViewController {
         setupUserButton()
         setupLocationButton()
         setupFavoritePlacesButton()
+        observeAddFavoritePlaceRequest()
     }
     
     private func setupMapView() {
@@ -54,6 +55,7 @@ class MapViewController: UIViewController {
         helpButton.topAnchor.constraint(equalTo: view.topAnchor, constant: .padding * 4).isActive = true
         helpButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .padding).isActive = true
     }
+    
     private func setupUserButton() {
         mapView.add(userButton)
         userButton.setImage(.person, for: .normal)
@@ -73,5 +75,13 @@ class MapViewController: UIViewController {
         favoritePlacesButton.setImage(.favorites, for: .normal)
         favoritePlacesButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -.padding * 4).isActive = true
         favoritePlacesButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -.padding).isActive = true
+    }
+    
+    private func observeAddFavoritePlaceRequest() {
+        mapView.annotationRequestWithCoordinates.subscribe(onNext: { [weak self] coordinates in
+            guard let self = self else { return }
+            let addFavoritePlaceVC = AddFavoritePlaceViewController()
+            self.present(addFavoritePlaceVC, animated: true)
+        }).disposed(by: disposeBag)
     }
 }

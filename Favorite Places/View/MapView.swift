@@ -7,9 +7,11 @@
 
 import MapKit
 import RxSwift
+import RxRelay
 
 class MapView: MKMapView {
     private let disposeBag = DisposeBag()
+    let annotationRequestWithCoordinates = PublishRelay<CLLocationCoordinate2D>()
     
     init() {
         super.init(frame: .zero)
@@ -24,12 +26,9 @@ class MapView: MKMapView {
         
         observeLongPress().subscribe(onNext: { [weak self] tap in
             guard let self = self else { return }
-            
             let location = tap.location(in: self)
             let coordinate = self.convert(location, toCoordinateFrom: self)
-            
-            let annotation = FavoritePlace(coordinate: coordinate)
-            self.addAnnotation(annotation)
+            self.annotationRequestWithCoordinates.accept(coordinate)
         }).disposed(by: disposeBag)
         
     }

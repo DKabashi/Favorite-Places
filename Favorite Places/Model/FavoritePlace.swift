@@ -10,8 +10,10 @@ import MapKit
 
 class FavoritePlace: NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
+    let title: String?
     
-    init(coordinate: CLLocationCoordinate2D) {
+    init(title: String?, coordinate: CLLocationCoordinate2D) {
+        self.title = title
         self.coordinate = coordinate
     }
 }

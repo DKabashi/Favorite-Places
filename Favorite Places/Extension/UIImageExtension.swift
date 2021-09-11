@@ -14,4 +14,8 @@ extension UIImage {
     static let help = UIImage(systemName: "questionmark.circle.fill")!
     static let locationOn = UIImage(systemName: "location.fill")!
     static let locationOff = UIImage(systemName: "location")!
+    static let back = UIImage(systemName: "chevron.left")!
+    static let camera = UIImage(systemName: "camera.fill")!
+    static let photoLibrary = UIImage(systemName: "photo.fill.on.rectangle.fill")!
+    static let globe = UIImage(systemName: "globe")!
 }

@@ -20,6 +20,8 @@
 		81146AF226ECEE5800EB6413 /* MKMapViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81146AF126ECEE5800EB6413 /* MKMapViewExtension.swift */; };
 		81146AF426ECEECD00EB6413 /* RxExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81146AF326ECEECD00EB6413 /* RxExtension.swift */; };
 		81146AF626ECF0DE00EB6413 /* FavoritePlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81146AF526ECF0DE00EB6413 /* FavoritePlace.swift */; };
+		81146AF826ED2D0200EB6413 /* AddFavoritePlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81146AF726ED2D0200EB6413 /* AddFavoritePlaceViewController.swift */; };
+		81146AFC26ED4B4F00EB6413 /* VerticalButtonStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81146AFB26ED4B4F00EB6413 /* VerticalButtonStack.swift */; };
 		81FA280326EBCE3F00251B65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA280226EBCE3F00251B65 /* AppDelegate.swift */; };
 		81FA280C26EBCE3F00251B65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81FA280B26EBCE3F00251B65 /* Assets.xcassets */; };
 		81FA280F26EBCE3F00251B65 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81FA280D26EBCE3F00251B65 /* LaunchScreen.storyboard */; };
@@ -71,6 +73,8 @@
 		81146AF126ECEE5800EB6413 /* MKMapViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKMapViewExtension.swift; sourceTree = "<group>"; };
 		81146AF326ECEECD00EB6413 /* RxExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxExtension.swift; sourceTree = "<group>"; };
 		81146AF526ECF0DE00EB6413 /* FavoritePlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePlace.swift; sourceTree = "<group>"; };
+		81146AF726ED2D0200EB6413 /* AddFavoritePlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFavoritePlaceViewController.swift; sourceTree = "<group>"; };
+		81146AFB26ED4B4F00EB6413 /* VerticalButtonStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalButtonStack.swift; sourceTree = "<group>"; };
 		81FA27FF26EBCE3F00251B65 /* Favorite Places.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Favorite Places.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81FA280226EBCE3F00251B65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81FA280B26EBCE3F00251B65 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -183,6 +187,7 @@
 				81FA284F26EBF34300251B65 /* SignupViewController.swift */,
 				81FA285126EBF34C00251B65 /* LoginViewController.swift */,
 				81146AE826ECB20000EB6413 /* MapViewController.swift */,
+				81146AF726ED2D0200EB6413 /* AddFavoritePlaceViewController.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -239,6 +244,7 @@
 				81FA284B26EBED3B00251B65 /* FavoritePlacesNavigationController.swift */,
 				81FA285726EBFB2A00251B65 /* FavoritePlacesTextField.swift */,
 				81146AED26ECC78D00EB6413 /* FavoritePlacesAlertViewController.swift */,
+				81146AFB26ED4B4F00EB6413 /* VerticalButtonStack.swift */,
 			);
 			path = "Custom component";
 			sourceTree = "<group>";
@@ -436,6 +442,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81146AFC26ED4B4F00EB6413 /* VerticalButtonStack.swift in Sources */,
+				81146AF826ED2D0200EB6413 /* AddFavoritePlaceViewController.swift in Sources */,
 				81146AE526ECAD3500EB6413 /* AuthenticationState.swift in Sources */,
 				81146AF026ECE9A700EB6413 /* MapView.swift in Sources */,
 				81146ADF26ECA24A00EB6413 /* AuthenticationModel.swift in Sources */,

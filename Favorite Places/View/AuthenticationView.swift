@@ -60,7 +60,6 @@ class AuthenticationView: UIView {
         emailTextField.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: .padding).isActive = true
         emailTextField.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).isActive = true
         emailTextField.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor).isActive = true
-        emailTextField.heightAnchor.constraint(equalToConstant: 60).isActive = true
     }
     
     private func observeEmailTextFieldEditing() {
@@ -92,7 +91,6 @@ class AuthenticationView: UIView {
         passwordTextField.topAnchor.constraint(equalTo: passwordLabel.bottomAnchor, constant: .padding).isActive = true
         passwordTextField.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).isActive = true
         passwordTextField.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor).isActive = true
-        passwordTextField.heightAnchor.constraint(equalToConstant: 60).isActive = true
     }
     
     private func setupAuthenticateButton() {
