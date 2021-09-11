@@ -19,13 +19,22 @@ class FavoritePlacesButton: UIButton {
             layer.borderWidth = 2
             layer.borderColor = UIColor.customLightBlue.cgColor
             setTitleColor(.customLightBlue, for: .normal)
+            heightAnchor.constraint(equalToConstant: 60).isActive = true
         case .filled:
             backgroundColor = .customLightBlue
             setTitleColor(.white, for: .normal)
+            heightAnchor.constraint(equalToConstant: 60).isActive = true
         case .squareWithImage:
             backgroundColor = .white
+            widthAnchor.constraint(equalToConstant: 80).isActive = true
+            heightAnchor.constraint(equalToConstant: 80).isActive = true
+            contentVerticalAlignment = .fill
+            contentHorizontalAlignment = .fill
+            imageView?.contentMode = .scaleAspectFit
+            imageEdgeInsets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
+            tintColor = .customLightBlue
+            addShadow()
         }
-        heightAnchor.constraint(equalToConstant: 60).isActive = true
     }
     
     required init?(coder: NSCoder) {

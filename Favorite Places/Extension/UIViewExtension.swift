@@ -21,6 +21,13 @@ extension UIView {
         
     }
     
+    func addShadow() {
+        layer.shadowColor = UIColor.black.withAlphaComponent(0.6).cgColor
+        layer.shadowOffset = CGSize(width: 2, height: 2)
+        layer.shadowRadius = 3
+        layer.shadowOpacity = 1
+    }
+    
     func clickAnimation(){
         UIView.animate(withDuration: 0.1,
             animations: {
