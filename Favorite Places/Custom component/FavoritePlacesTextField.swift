@@ -19,6 +19,7 @@ class FavoritePlacesTextField: UITextField {
         leftViewMode = .always
         rightView = UIView(frame: paddingRect)
         rightViewMode = .always
+        autocorrectionType = .no
     }
     
     required init?(coder: NSCoder) {

@@ -6,16 +6,19 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 class AuthenticationView: UIView {
-    let titleLabel = FavoritePlacesLabel(type: .title)
-    let emailLabel = FavoritePlacesLabel(type: .description)
-    let emailTextField = FavoritePlacesTextField()
-    let passwordLabel = FavoritePlacesLabel(type: .description)
-    let passwordTextField = FavoritePlacesTextField()
-    let authenticateButton = FavoritePlacesButton(style: .filled)
-    let alternativeAuthenticationLabel = FavoritePlacesLabel(type: .description)
-    let alternativeAuthenticationButton = UIButton()
+    private let titleLabel = FavoritePlacesLabel(type: .title)
+    private let emailLabel = FavoritePlacesLabel(type: .description)
+    private let emailTextField = FavoritePlacesTextField()
+    private let passwordLabel = FavoritePlacesLabel(type: .description)
+    private let passwordTextField = FavoritePlacesTextField()
+    private let authenticateButton = FavoritePlacesButton(style: .filled)
+    private let alternativeAuthenticationLabel = FavoritePlacesLabel(type: .description)
+    private let alternativeAuthenticationButton = UIButton()
+    private let disposeBag = DisposeBag()
     
     var isLogin: Bool
     
@@ -51,14 +54,24 @@ class AuthenticationView: UIView {
     
     private func setupEmailTextField() {
         add(emailTextField)
+        observeEmailTextFieldEditing()
+        emailTextField.returnKeyType = .continue
         emailTextField.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: .padding).isActive = true
         emailTextField.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).isActive = true
         emailTextField.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor).isActive = true
         emailTextField.heightAnchor.constraint(equalToConstant: 60).isActive = true
     }
     
+    private func observeEmailTextFieldEditing() {
+        emailTextField.rx.controlEvent([.editingDidEndOnExit]).subscribe(onNext: {
+            self.passwordTextField.becomeFirstResponder()
+        }).disposed(by: disposeBag)
+    }
+    
     private func setupPasswordLabel() {
         add(passwordLabel)
+        observePasswordTextFieldEditing()
+        passwordTextField.returnKeyType = .done
         passwordLabel.text = isLogin ? "Password:" : "Your password:"
         passwordLabel.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: .padding * 2).isActive = true
         passwordLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).isActive = true
@@ -66,8 +79,15 @@ class AuthenticationView: UIView {
         passwordLabel.heightAnchor.constraint(equalToConstant: 35).isActive = true
     }
     
+    private func observePasswordTextFieldEditing() {
+        passwordTextField.rx.controlEvent([.editingDidEndOnExit]).subscribe(onNext: {
+            self.passwordTextField.resignFirstResponder()
+        }).disposed(by: disposeBag)
+    }
+    
     private func setupPasswordTextField() {
         add(passwordTextField)
+        passwordTextField.isSecureTextEntry = true
         passwordTextField.topAnchor.constraint(equalTo: passwordLabel.bottomAnchor, constant: .padding).isActive = true
         passwordTextField.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).isActive = true
         passwordTextField.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor).isActive = true

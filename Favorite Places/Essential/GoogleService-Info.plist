@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>904806045058-cb5vk35qipupuregpkrr57hmjdhviora.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.904806045058-cb5vk35qipupuregpkrr57hmjdhviora</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCT-Vl86Vwdau5Be5mi-p0ZiQHcBQaHfDM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>904806045058</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.frakton.Favorite-Places</string>
+	<key>PROJECT_ID</key>
+	<string>favorite-places-b09a2</string>
+	<key>STORAGE_BUCKET</key>
+	<string>favorite-places-b09a2.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:904806045058:ios:8bae34f98b0e7ff9beeb9b</string>
+</dict>
+</plist>
