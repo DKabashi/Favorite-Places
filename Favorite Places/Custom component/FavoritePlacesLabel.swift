@@ -26,6 +26,7 @@ class FavoritePlacesLabel: UILabel {
             numberOfLines = 4
             textColor = .gray
         case .bold:
+            fontSize = 30
             fontWeight = .bold
             textColor = .darkGray
         }

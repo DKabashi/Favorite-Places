@@ -7,8 +7,6 @@
 
 import Foundation
 
-enum FavoritePlacesError: String, Error {
-    case defaultError = "Something went wrong. Please try again!",
-         defaultAuth = "Something went wrong with the authentication process. Please try again!"
+enum FavoritePlacesError: Error {
     
 }

@@ -48,7 +48,7 @@ class SignupViewController: UIViewController {
                     self.switchRootViewController()
                 }
             case .fail(error: let error):
-                print("User creation failed: \(error.localizedDescription)")
+                self.presentAlert(title: "Failed to create account", message: error.localizedDescription)
             }
         }).disposed(by: disposeBag)
     }

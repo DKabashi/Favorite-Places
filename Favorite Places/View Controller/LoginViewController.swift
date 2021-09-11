@@ -47,7 +47,7 @@ class LoginViewController: UIViewController {
                     self.switchRootViewController()
                 }
             case .fail(error: let error):
-                print("User creation failed: \(error.localizedDescription)")
+                self.presentAlert(title: "Failed to authenticate", message: error.localizedDescription)
             }
         }).disposed(by: disposeBag)
     }
