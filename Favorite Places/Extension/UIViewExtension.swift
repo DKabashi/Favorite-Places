@@ -39,4 +39,40 @@ extension UIView {
                 }
             })
     }
+    
+    func shakeAnimation(duration: TimeInterval = 0.5, xValue: CGFloat = 2, yValue: CGFloat = 7) {
+           self.transform = CGAffineTransform(translationX: xValue, y: yValue)
+           UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
+               self.transform = CGAffineTransform.identity
+           }, completion: nil)
+
+       }
+    
+    func activityStartAnimating() {
+        let backgroundView = UIView()
+        backgroundView.frame = CGRect.init(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height)
+        backgroundView.backgroundColor = .clear
+        backgroundView.tag = 475647
+
+        let activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.color = .customLightBlue
+        self.addSubview(backgroundView)
+        backgroundView.addSubview(activityIndicator)
+        
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        activityIndicator.centerYAnchor.constraint(equalTo: backgroundView.centerYAnchor).isActive = true
+        activityIndicator.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor).isActive = true
+        
+        activityIndicator.startAnimating()
+        self.isUserInteractionEnabled = false
+    }
+
+    func activityStopAnimating() {
+        if let background = viewWithTag(475647){
+            background.removeFromSuperview()
+        }
+        self.isUserInteractionEnabled = true
+    }
 }

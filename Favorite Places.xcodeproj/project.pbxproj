@@ -23,6 +23,8 @@
 		81146AF826ED2D0200EB6413 /* AddFavoritePlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81146AF726ED2D0200EB6413 /* AddFavoritePlaceViewController.swift */; };
 		81146AFC26ED4B4F00EB6413 /* VerticalButtonStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81146AFB26ED4B4F00EB6413 /* VerticalButtonStack.swift */; };
 		81357A7E26EDFB0D00DF6766 /* GetImageFromURLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81357A7D26EDFB0D00DF6766 /* GetImageFromURLViewController.swift */; };
+		81357A8126EE074E00DF6766 /* DownloadImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81357A8026EE074E00DF6766 /* DownloadImageManager.swift */; };
+		81357A8326EE07C800DF6766 /* DownloadImageState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81357A8226EE07C800DF6766 /* DownloadImageState.swift */; };
 		81FA280326EBCE3F00251B65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA280226EBCE3F00251B65 /* AppDelegate.swift */; };
 		81FA280C26EBCE3F00251B65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81FA280B26EBCE3F00251B65 /* Assets.xcassets */; };
 		81FA280F26EBCE3F00251B65 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81FA280D26EBCE3F00251B65 /* LaunchScreen.storyboard */; };
@@ -77,6 +79,8 @@
 		81146AF726ED2D0200EB6413 /* AddFavoritePlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFavoritePlaceViewController.swift; sourceTree = "<group>"; };
 		81146AFB26ED4B4F00EB6413 /* VerticalButtonStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalButtonStack.swift; sourceTree = "<group>"; };
 		81357A7D26EDFB0D00DF6766 /* GetImageFromURLViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetImageFromURLViewController.swift; sourceTree = "<group>"; };
+		81357A8026EE074E00DF6766 /* DownloadImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadImageManager.swift; sourceTree = "<group>"; };
+		81357A8226EE07C800DF6766 /* DownloadImageState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadImageState.swift; sourceTree = "<group>"; };
 		81FA27FF26EBCE3F00251B65 /* Favorite Places.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Favorite Places.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81FA280226EBCE3F00251B65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81FA280B26EBCE3F00251B65 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -146,6 +150,14 @@
 			path = "Authentication service";
 			sourceTree = "<group>";
 		};
+		81357A7F26EE072600DF6766 /* Download image service */ = {
+			isa = PBXGroup;
+			children = (
+				81357A8026EE074E00DF6766 /* DownloadImageManager.swift */,
+			);
+			path = "Download image service";
+			sourceTree = "<group>";
+		};
 		81FA27F626EBCE3F00251B65 = {
 			isa = PBXGroup;
 			children = (
@@ -173,6 +185,7 @@
 				81FA283F26EBD82600251B65 /* View */,
 				81FA283E26EBD81200251B65 /* Model */,
 				81FA284026EBD84100251B65 /* Enum */,
+				81357A7F26EE072600DF6766 /* Download image service */,
 				81146ADB26EC9F9000EB6413 /* Authentication service */,
 				81FA284326EBD87300251B65 /* Custom component */,
 				81FA284126EBD85500251B65 /* Extension */,
@@ -221,6 +234,7 @@
 				81FA284726EBD8F900251B65 /* ButtonType.swift */,
 				81146AE426ECAD3500EB6413 /* AuthenticationState.swift */,
 				81146AE626ECADCF00EB6413 /* FavoritePlacesError.swift */,
+				81357A8226EE07C800DF6766 /* DownloadImageState.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -453,12 +467,14 @@
 				81146ADF26ECA24A00EB6413 /* AuthenticationModel.swift in Sources */,
 				81146AE726ECADCF00EB6413 /* FavoritePlacesError.swift in Sources */,
 				81FA285226EBF34C00251B65 /* LoginViewController.swift in Sources */,
+				81357A8126EE074E00DF6766 /* DownloadImageManager.swift in Sources */,
 				81146ADD26EC9FCC00EB6413 /* AuthenticationManager.swift in Sources */,
 				81FA283B26EBD43200251B65 /* UIViewExtension.swift in Sources */,
 				81FA284826EBD8F900251B65 /* ButtonType.swift in Sources */,
 				81FA285026EBF34300251B65 /* SignupViewController.swift in Sources */,
 				81FA285426EBF4D900251B65 /* AuthenticationView.swift in Sources */,
 				81FA283726EBD23E00251B65 /* FavoritePlacesLabel.swift in Sources */,
+				81357A8326EE07C800DF6766 /* DownloadImageState.swift in Sources */,
 				81FA284626EBD8C500251B65 /* FavoritePlacesButton.swift in Sources */,
 				81FA283926EBD28A00251B65 /* LabelType.swift in Sources */,
 				81FA284A26EBE4D900251B65 /* UIColorExtension.swift in Sources */,

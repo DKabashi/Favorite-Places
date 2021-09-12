@@ -21,7 +21,7 @@ class AddFavoritePlaceViewController: UIViewController {
     private let uploadFromCameraButton = VerticalButtonStack(image: .camera, text: "Camera")
     private let uploadFromURLButton = VerticalButtonStack(image: .globe, text: "Image URL")
     private let addFavoritePlaceButton = FavoritePlacesButton(style: .filled)
-    
+    private let imageFromURL = PublishRelay<UIImage?>()
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -35,6 +35,7 @@ class AddFavoritePlaceViewController: UIViewController {
         setupUploadLabel()
         setupUploadButtonsStackView()
         setupAddFavoritePlaceButton()
+        observeImageFromURL()
     }
     
     private func setupView() {
@@ -163,6 +164,7 @@ class AddFavoritePlaceViewController: UIViewController {
             let getImageFromURLVC = GetImageFromURLViewController()
             getImageFromURLVC.modalPresentationStyle = .overFullScreen
             getImageFromURLVC.modalTransitionStyle = .crossDissolve
+            getImageFromURLVC.imageFromURL.bind(to: self.imageFromURL).disposed(by: self.disposeBag)
             self.present(getImageFromURLVC, animated: true)
         }).disposed(by: disposeBag)
     }
@@ -183,6 +185,17 @@ class AddFavoritePlaceViewController: UIViewController {
         addFavoritePlaceButton.leadingAnchor.constraint(equalTo: uploadButtonsStackView.leadingAnchor).isActive = true
         addFavoritePlaceButton.trailingAnchor.constraint(equalTo: uploadButtonsStackView.trailingAnchor).isActive = true
         addFavoritePlaceButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+    }
+    
+    private func observeImageFromURL() {
+        imageFromURL.subscribe(onNext: { [weak self] image in
+            guard let self = self else { return }
+            guard let image = image else {
+                self.presentAlert(title: "Image download failed", message: "Something went wrong. Please try again with a different URL.")
+                return
+            }
+            self.previewUploadImageView.image = image
+        }).disposed(by: disposeBag)
     }
 }
 

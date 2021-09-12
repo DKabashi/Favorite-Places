@@ -17,6 +17,9 @@ class GetImageFromURLViewController: UIViewController {
     private let getImageButton = FavoritePlacesButton(style: .filled)
     private let closeButton  = FavoritePlacesButton(style: .outline)
     private let disposeBag = DisposeBag()
+    private let downloadImageManager = DonwloadImageManager()
+    
+    let imageFromURL = PublishRelay<UIImage?>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +28,7 @@ class GetImageFromURLViewController: UIViewController {
         setupTitleLabel()
         setupButtons()
         setupURLTextField()
+        observeDownloadImageManagerState()
     }
     
     private func setupView() {
@@ -73,14 +77,14 @@ class GetImageFromURLViewController: UIViewController {
         stackview.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
-    
     private func observeGetImageButtonTap() {
         getImageButton.rx.tap.subscribe(onNext: { [weak self] _ in
             guard let self = self else { return }
-            #warning("logic here")
+            self.downloadImage()
         }).disposed(by: disposeBag)
     }
     
+  
     private func observeCloseButtonTap() {
         closeButton.rx.tap.subscribe(onNext: { [weak self] _ in
             guard let self = self else { return }
@@ -90,10 +94,46 @@ class GetImageFromURLViewController: UIViewController {
     
     private func setupURLTextField() {
         view.add(urlTextField)
+        urlTextField.returnKeyType = .search
         urlTextField.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
         urlTextField.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: .padding).isActive = true
         urlTextField.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -.padding).isActive = true
         urlTextField.becomeFirstResponder()
+        observeURLTextFieldEditing()
+    }
+    
+    private func observeURLTextFieldEditing() {
+        urlTextField.rx.controlEvent([.editingDidEndOnExit]).subscribe(onNext: { [weak self] _ in
+            guard let self = self else { return }
+            self.downloadImage()
+        }).disposed(by: disposeBag)
+    }
+    
+    private func downloadImage() {
+        if let stringURL = urlTextField.text, !stringURL.isEmpty {
+            downloadImageManager.downloadImage(from: stringURL)
+        } else {
+            getImageButton.shakeAnimation()
+        }
+    }
+    
+    
+    private func observeDownloadImageManagerState() {
+        downloadImageManager.state.subscribe(onNext: { [weak self] state in
+            guard let self = self else { return }
+            switch state {
+            case .downloading:
+                self.view.activityStartAnimating()
+            case .error:
+                self.view.activityStopAnimating()
+                self.imageFromURL.accept(nil)
+                self.dismiss(animated: true)
+            case .success(image: let image):
+                self.view.activityStopAnimating()
+                self.imageFromURL.accept(image)
+                self.dismiss(animated: true)
+            }
+        }).disposed(by: disposeBag)
     }
 }
 
