@@ -81,11 +81,19 @@ class MapViewController: UIViewController {
     
     private func setupLocationButton() {
         mapView.add(locationButton)
-        locationButton.setImage(.locationOff, for: .normal)
+        locationButton.setImage(.locationOn, for: .normal)
         locationButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -.padding * 4).isActive = true
         locationButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .padding).isActive = true
         locationButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
         locationButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        observeLocationButtonTap()
+    }
+    
+    private func observeLocationButtonTap() {
+        locationButton.rx.tap.subscribe(onNext: {[weak self] _ in
+            guard let self = self else { return }
+            self.mapView.goToUserLocation()
+        }).disposed(by: disposeBag)
     }
     
     private func setupFavoritePlacesButton() {

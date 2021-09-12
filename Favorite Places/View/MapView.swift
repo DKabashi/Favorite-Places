@@ -13,12 +13,15 @@ class MapView: MKMapView {
     private let disposeBag = DisposeBag()
     private let persistanceManager = PersistenceManager()
     let annotationRequestWithCoordinates = PublishRelay<CLLocationCoordinate2D>()
+    private var locationManager: CLLocationManager?
     
     init() {
         super.init(frame: .zero)
         setupMap()
         loadMapWithAnnotations()
         observeNewAnnotationRequest()
+        setupLocationManager()
+        checkLocationAuthorization()
     }
     
     private func setupMap() {
@@ -50,6 +53,25 @@ class MapView: MKMapView {
         }).disposed(by: disposeBag)
     }
     
+    private func setupLocationManager() {
+        locationManager = CLLocationManager()
+        locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager?.delegate = self
+        locationManager?.requestWhenInUseAuthorization()
+        locationManager?.requestLocation()
+    }
+    
+     func goToUserLocation() {
+        if locationManager == nil {
+            setupLocationManager()
+        }
+        
+        if let location = locationManager?.location?.coordinate {
+            let region = MKCoordinateRegion.init(center: location, latitudinalMeters: 4000, longitudinalMeters: 4000)
+            setRegion(region, animated: true)
+        }
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -57,6 +79,9 @@ class MapView: MKMapView {
 
 extension MapView: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation {
+            return nil
+        }
         let annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "favoritePlacesAnnotation")
         annotationView.markerTintColor = .customLightBlue
         if let annotation = annotation as? FavoritePlace, let image = UIImage(data: annotation.imageData) {
@@ -69,5 +94,33 @@ extension MapView: MKMapViewDelegate {
             annotationView.detailCalloutAccessoryView = imageView
         }
         return annotationView
+    }
+    
+    private func checkLocationAuthorization() {
+        switch CLLocationManager.authorizationStatus() {
+        case .authorizedWhenInUse:
+            showsUserLocation = true
+            goToUserLocation()
+            locationManager?.startUpdatingLocation()
+            break
+        case .notDetermined:
+            locationManager?.requestWhenInUseAuthorization()
+        default:
+            break
+        }
+    }
+    
+}
+
+extension MapView: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        checkLocationAuthorization()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        return
     }
 }

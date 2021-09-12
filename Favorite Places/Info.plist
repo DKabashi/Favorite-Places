@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>The location is needed to locate the place near you in case you want to add it as a favorite place.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>The camera is needed for you to take pictures of your favorite places.</string>
 	<key>CFBundleDevelopmentRegion</key>
