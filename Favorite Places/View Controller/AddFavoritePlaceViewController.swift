@@ -12,7 +12,7 @@ import RxSwift
 class AddFavoritePlaceViewController: UIViewController {
     private let previewUploadImageView = UIImageView()
     private let uploadImagePlaceHolderLabel = FavoritePlacesLabel(type: .description)
-    private let backButton = UIButton()
+    private let backButton = BackButton()
     private let locationNameLabel = FavoritePlacesLabel(type: .description)
     private let locationNameTextField = FavoritePlacesTextField()
     private let uploadLabel = FavoritePlacesLabel(type: .description)
@@ -56,15 +56,7 @@ class AddFavoritePlaceViewController: UIViewController {
     
     private func setupBackButton() {
         view.add(backButton)
-        backButton.setImage(.back, for: .normal)
-        backButton.tintColor = .customLightBlue
-        backButton.imageView?.contentMode = .scaleAspectFit
-        backButton.contentHorizontalAlignment = .fill
-        backButton.contentVerticalAlignment = .fill
-        backButton.topAnchor.constraint(equalTo: view.topAnchor, constant: .padding).isActive = true
-        backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .padding).isActive = true
-        backButton.widthAnchor.constraint(equalToConstant: 33).isActive = true
-        backButton.heightAnchor.constraint(equalTo: backButton.widthAnchor).isActive = true
+        backButton.configure(parentView: view)
         observeBackButtonTap()
     }
     

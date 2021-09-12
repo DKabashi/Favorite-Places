@@ -27,6 +27,11 @@
 		81357A8326EE07C800DF6766 /* DownloadImageState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81357A8226EE07C800DF6766 /* DownloadImageState.swift */; };
 		81357A8B26EE1ED400DF6766 /* PersistanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81357A8A26EE1ED400DF6766 /* PersistanceManager.swift */; };
 		81357A8D26EE1EF000DF6766 /* PersistanceActionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81357A8C26EE1EF000DF6766 /* PersistanceActionType.swift */; };
+		81357A8F26EE527400DF6766 /* FavoritesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81357A8E26EE527400DF6766 /* FavoritesListViewController.swift */; };
+		81357A9126EE535E00DF6766 /* FavoritePlaceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81357A9026EE535E00DF6766 /* FavoritePlaceCollectionViewCell.swift */; };
+		81357A9326EE553C00DF6766 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81357A9226EE553C00DF6766 /* BackButton.swift */; };
+		81357A9526EE5B6A00DF6766 /* UICollectionViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81357A9426EE5B6A00DF6766 /* UICollectionViewExtension.swift */; };
+		81357A9826EE5C3700DF6766 /* FavoritePlacesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81357A9726EE5C3700DF6766 /* FavoritePlacesCollectionView.swift */; };
 		81FA280326EBCE3F00251B65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA280226EBCE3F00251B65 /* AppDelegate.swift */; };
 		81FA280C26EBCE3F00251B65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81FA280B26EBCE3F00251B65 /* Assets.xcassets */; };
 		81FA280F26EBCE3F00251B65 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81FA280D26EBCE3F00251B65 /* LaunchScreen.storyboard */; };
@@ -85,6 +90,11 @@
 		81357A8226EE07C800DF6766 /* DownloadImageState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadImageState.swift; sourceTree = "<group>"; };
 		81357A8A26EE1ED400DF6766 /* PersistanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceManager.swift; sourceTree = "<group>"; };
 		81357A8C26EE1EF000DF6766 /* PersistanceActionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceActionType.swift; sourceTree = "<group>"; };
+		81357A8E26EE527400DF6766 /* FavoritesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesListViewController.swift; sourceTree = "<group>"; };
+		81357A9026EE535E00DF6766 /* FavoritePlaceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePlaceCollectionViewCell.swift; sourceTree = "<group>"; };
+		81357A9226EE553C00DF6766 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
+		81357A9426EE5B6A00DF6766 /* UICollectionViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewExtension.swift; sourceTree = "<group>"; };
+		81357A9726EE5C3700DF6766 /* FavoritePlacesCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePlacesCollectionView.swift; sourceTree = "<group>"; };
 		81FA27FF26EBCE3F00251B65 /* Favorite Places.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Favorite Places.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81FA280226EBCE3F00251B65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81FA280B26EBCE3F00251B65 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -167,6 +177,7 @@
 		81357A8626EE1E7000DF6766 /* Button */ = {
 			isa = PBXGroup;
 			children = (
+				81357A9226EE553C00DF6766 /* BackButton.swift */,
 				81146AFB26ED4B4F00EB6413 /* VerticalButtonStack.swift */,
 				81FA284526EBD8C500251B65 /* FavoritePlacesButton.swift */,
 			);
@@ -195,6 +206,14 @@
 				81FA284B26EBED3B00251B65 /* FavoritePlacesNavigationController.swift */,
 			);
 			path = "Navigation Controller";
+			sourceTree = "<group>";
+		};
+		81357A9626EE5C1D00DF6766 /* Collection View */ = {
+			isa = PBXGroup;
+			children = (
+				81357A9726EE5C3700DF6766 /* FavoritePlacesCollectionView.swift */,
+			);
+			path = "Collection View";
 			sourceTree = "<group>";
 		};
 		81FA27F626EBCE3F00251B65 = {
@@ -242,6 +261,7 @@
 				81146AE826ECB20000EB6413 /* MapViewController.swift */,
 				81146AF726ED2D0200EB6413 /* AddFavoritePlaceViewController.swift */,
 				81357A7D26EDFB0D00DF6766 /* GetImageFromURLViewController.swift */,
+				81357A8E26EE527400DF6766 /* FavoritesListViewController.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -261,6 +281,7 @@
 			children = (
 				81FA285326EBF4D900251B65 /* AuthenticationView.swift */,
 				81146AEF26ECE9A700EB6413 /* MapView.swift */,
+				81357A9026EE535E00DF6766 /* FavoritePlaceCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -288,6 +309,7 @@
 				81FA285526EBF65900251B65 /* CGFloatExtension.swift */,
 				81146AF126ECEE5800EB6413 /* MKMapViewExtension.swift */,
 				81146AF326ECEECD00EB6413 /* RxExtension.swift */,
+				81357A9426EE5B6A00DF6766 /* UICollectionViewExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -295,6 +317,7 @@
 		81FA284326EBD87300251B65 /* Custom component */ = {
 			isa = PBXGroup;
 			children = (
+				81357A9626EE5C1D00DF6766 /* Collection View */,
 				81357A8926EE1E8A00DF6766 /* Navigation Controller */,
 				81357A8826EE1E7E00DF6766 /* Text Field */,
 				81357A8726EE1E7400DF6766 /* View Controller */,
@@ -497,11 +520,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81357A9126EE535E00DF6766 /* FavoritePlaceCollectionViewCell.swift in Sources */,
 				81357A8B26EE1ED400DF6766 /* PersistanceManager.swift in Sources */,
 				81146AFC26ED4B4F00EB6413 /* VerticalButtonStack.swift in Sources */,
 				81146AF826ED2D0200EB6413 /* AddFavoritePlaceViewController.swift in Sources */,
+				81357A9526EE5B6A00DF6766 /* UICollectionViewExtension.swift in Sources */,
 				81146AE526ECAD3500EB6413 /* AuthenticationState.swift in Sources */,
 				81357A7E26EDFB0D00DF6766 /* GetImageFromURLViewController.swift in Sources */,
+				81357A8F26EE527400DF6766 /* FavoritesListViewController.swift in Sources */,
 				81146AF026ECE9A700EB6413 /* MapView.swift in Sources */,
 				81146ADF26ECA24A00EB6413 /* AuthenticationModel.swift in Sources */,
 				81146AE726ECADCF00EB6413 /* FavoritePlacesError.swift in Sources */,
@@ -524,12 +550,14 @@
 				81FA285626EBF65900251B65 /* CGFloatExtension.swift in Sources */,
 				81146AF626ECF0DE00EB6413 /* FavoritePlace.swift in Sources */,
 				81FA283326EBCF0000251B65 /* LandingViewController.swift in Sources */,
+				81357A9326EE553C00DF6766 /* BackButton.swift in Sources */,
 				81357A8D26EE1EF000DF6766 /* PersistanceActionType.swift in Sources */,
 				81146AE326ECA7FF00EB6413 /* User.swift in Sources */,
 				81146AF226ECEE5800EB6413 /* MKMapViewExtension.swift in Sources */,
 				81FA283526EBD0E300251B65 /* UIImageExtension.swift in Sources */,
 				81FA284C26EBED3B00251B65 /* FavoritePlacesNavigationController.swift in Sources */,
 				81146AEC26ECBF2E00EB6413 /* UIViewControllerExtension.swift in Sources */,
+				81357A9826EE5C3700DF6766 /* FavoritePlacesCollectionView.swift in Sources */,
 				81FA285826EBFB2A00251B65 /* FavoritePlacesTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

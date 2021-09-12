@@ -24,7 +24,7 @@ extension UIViewController {
         }
     }
     
-    func presentAlertWithTwoOptions(title: String = "Informatë", message: String, buttonTitle: String, alternativeButtonTitle: String? = nil, buttonCallback: (()->())? = nil, alternativeButtonCallback: (() -> ())? = nil){
+    func presentAlertWithTwoOptions(title: String, message: String, buttonTitle: String, alternativeButtonTitle: String? = nil, buttonCallback: (()->())? = nil, alternativeButtonCallback: (() -> ())? = nil){
         DispatchQueue.main.async {
             let alertVC = FavoritePlacesAlertViewController(title: title, message: message, buttonTitle: buttonTitle, alternativeButtonTitle: alternativeButtonTitle, buttonCallback: buttonCallback, alternativeButtonCallback: alternativeButtonCallback)
             alertVC.modalPresentationStyle = .overFullScreen

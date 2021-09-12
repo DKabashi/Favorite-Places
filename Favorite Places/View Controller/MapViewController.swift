@@ -73,7 +73,9 @@ class MapViewController: UIViewController {
     private func observeUserButtonTap() {
         userButton.rx.tap.subscribe(onNext: {[weak self] _ in
             guard let self = self else { return }
-            self.authenticationManager.signOut()
+            self.presentAlertWithTwoOptions(title: "Greetings", message: "Your email address is \(AuthenticationManager.currentUser!.email).", buttonTitle: "Continue", alternativeButtonTitle: "Sign out", buttonCallback: nil, alternativeButtonCallback: {
+                self.authenticationManager.signOut()
+            })
         }).disposed(by: disposeBag)
     }
     
@@ -93,6 +95,14 @@ class MapViewController: UIViewController {
         favoritePlacesButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -.padding).isActive = true
         favoritePlacesButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
         favoritePlacesButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        observeFavoritePlacesButtonTap()
+    }
+    
+    private func observeFavoritePlacesButtonTap() {
+        favoritePlacesButton.rx.tap.subscribe(onNext: {[weak self] _ in
+            guard let self = self else { return }
+            self.present(FavoritesListViewController(), animated: true)
+        }).disposed(by: disposeBag)
     }
     
     private func observeAddFavoritePlaceRequest() {
