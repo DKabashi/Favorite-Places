@@ -19,7 +19,6 @@ class MapViewController: UIViewController {
     private let newFavoritePlace = PublishRelay<FavoritePlace>()
     private var disposeBag = DisposeBag()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupMapView()
@@ -68,6 +67,14 @@ class MapViewController: UIViewController {
         userButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -.padding).isActive = true
         userButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
         userButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        observeUserButtonTap()
+    }
+    
+    private func observeUserButtonTap() {
+        userButton.rx.tap.subscribe(onNext: {[weak self] _ in
+            guard let self = self else { return }
+            self.authenticationManager.signOut()
+        }).disposed(by: disposeBag)
     }
     
     private func setupLocationButton() {
