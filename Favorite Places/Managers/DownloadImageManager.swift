@@ -10,7 +10,6 @@ import RxSwift
 import RxRelay
 
 class DonwloadImageManager {
-    
     let state = PublishRelay<DownloadImageState>()
 
     func downloadImage(from urlString: String) {

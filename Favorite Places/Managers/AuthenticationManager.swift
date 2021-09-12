@@ -14,6 +14,14 @@ class AuthenticationManager {
     let state = PublishRelay<AuthenticationState>()
     private var handle: AuthStateDidChangeListenerHandle?
     
+    static var currentUser: User? {
+        if let email = Auth.auth().currentUser?.email {
+            return User(email: email)
+        } else {
+            return nil
+        }
+    }
+    
     static var isAuthenticated: Bool {
         return Auth.auth().currentUser != nil
     }

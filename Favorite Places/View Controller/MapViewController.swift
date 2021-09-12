@@ -10,13 +10,15 @@ import RxCocoa
 import RxSwift
 
 class MapViewController: UIViewController {
-    let authenticationManager = AuthenticationManager()
-    let mapView = MapView()
-    let helpButton = FavoritePlacesButton(style: .squareWithImage)
-    let userButton = FavoritePlacesButton(style: .squareWithImage)
-    let locationButton = FavoritePlacesButton(style: .squareWithImage)
-    let favoritePlacesButton = FavoritePlacesButton(style: .squareWithImage)
+    private let authenticationManager = AuthenticationManager()
+    private let mapView = MapView()
+    private let helpButton = FavoritePlacesButton(style: .squareWithImage)
+    private let userButton = FavoritePlacesButton(style: .squareWithImage)
+    private let locationButton = FavoritePlacesButton(style: .squareWithImage)
+    private let favoritePlacesButton = FavoritePlacesButton(style: .squareWithImage)
+    private let newFavoritePlace = PublishRelay<FavoritePlace>()
     private var disposeBag = DisposeBag()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +29,7 @@ class MapViewController: UIViewController {
         setupLocationButton()
         setupFavoritePlacesButton()
         observeAddFavoritePlaceRequest()
+        observeNewFavoritePlaces()
     }
     
     private func setupMapView() {
@@ -89,7 +92,17 @@ class MapViewController: UIViewController {
         mapView.annotationRequestWithCoordinates.subscribe(onNext: { [weak self] coordinates in
             guard let self = self else { return }
             let addFavoritePlaceVC = AddFavoritePlaceViewController()
+            addFavoritePlaceVC.latitude = coordinates.latitude
+            addFavoritePlaceVC.longitude = coordinates.longitude
+            addFavoritePlaceVC.additionSucceededWithFavoritePlace.bind(to: self.newFavoritePlace).disposed(by: self.disposeBag)
             self.present(addFavoritePlaceVC, animated: true)
+        }).disposed(by: disposeBag)
+    }
+    
+    private func observeNewFavoritePlaces() {
+        newFavoritePlace.subscribe(onNext: { [weak self] favoritePlace in
+            guard let self = self else { return }
+            self.mapView.addAnnotation(favoritePlace)
         }).disposed(by: disposeBag)
     }
 }

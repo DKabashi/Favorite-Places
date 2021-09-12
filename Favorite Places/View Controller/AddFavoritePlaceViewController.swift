@@ -23,6 +23,13 @@ class AddFavoritePlaceViewController: UIViewController {
     private let addFavoritePlaceButton = FavoritePlacesButton(style: .filled)
     private let imageFromURL = PublishRelay<UIImage?>()
     private let disposeBag = DisposeBag()
+    private let persistanceManager = PersistenceManager()
+    private var favoritePlace: FavoritePlace?
+    
+    let additionSucceededWithFavoritePlace = PublishRelay<FavoritePlace>()
+    
+    var latitude: Double!
+    var longitude: Double!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +43,7 @@ class AddFavoritePlaceViewController: UIViewController {
         setupUploadButtonsStackView()
         setupAddFavoritePlaceButton()
         observeImageFromURL()
+        observePersistanceStatus()
     }
     
     private func setupView() {
@@ -185,6 +193,21 @@ class AddFavoritePlaceViewController: UIViewController {
         addFavoritePlaceButton.leadingAnchor.constraint(equalTo: uploadButtonsStackView.leadingAnchor).isActive = true
         addFavoritePlaceButton.trailingAnchor.constraint(equalTo: uploadButtonsStackView.trailingAnchor).isActive = true
         addFavoritePlaceButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        observeAddFavoritePlaceButtonTap()
+    }
+    
+    private func observeAddFavoritePlaceButtonTap() {
+        addFavoritePlaceButton.rx.tap.subscribe(onNext: { [weak self] _ in
+            guard let self = self else { return }
+            if let image = self.previewUploadImageView.image?.pngData() {
+                let favoritePlace = FavoritePlace(title: self.locationNameTextField.text, latitude: self.latitude, longitude: self.longitude, imageData: image)
+                self.favoritePlace = favoritePlace
+                self.persistanceManager.updateWith(favorite: favoritePlace, actionType: .add)
+            } else {
+                self.presentAlert(title: "Add favorite place failed", message: "You need to upload an image for this favorite place.")
+            }
+            
+        }).disposed(by: disposeBag)
     }
     
     private func observeImageFromURL() {
@@ -195,6 +218,24 @@ class AddFavoritePlaceViewController: UIViewController {
                 return
             }
             self.previewUploadImageView.image = image
+        }).disposed(by: disposeBag)
+    }
+    
+    private func observePersistanceStatus() {
+        persistanceManager.failedToPersistWithError.subscribe(onNext: { [weak self] error in
+            guard let self = self else { return }
+            switch error {
+            case .alreadyInFavorites:
+                self.presentAlert(title: "This place already exists", message: "Please add another place to favorites.")
+            default:
+                self.presentAlert(title: "Something went wrong", message: "The process of adding this place to favorites failed. Please try again.")
+            }
+        }).disposed(by: disposeBag)
+        
+        persistanceManager.persistanceSucceded.subscribe(onNext: {[weak self] _ in
+            guard let self = self else { return }
+            self.additionSucceededWithFavoritePlace.accept(self.favoritePlace!)
+            self.dismiss(animated: true)
         }).disposed(by: disposeBag)
     }
 }

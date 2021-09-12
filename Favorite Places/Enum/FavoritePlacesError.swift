@@ -8,5 +8,6 @@
 import Foundation
 
 enum FavoritePlacesError: Error {
-    
+    case unableToFavorite,
+         alreadyInFavorites
 }

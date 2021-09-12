@@ -25,6 +25,8 @@
 		81357A7E26EDFB0D00DF6766 /* GetImageFromURLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81357A7D26EDFB0D00DF6766 /* GetImageFromURLViewController.swift */; };
 		81357A8126EE074E00DF6766 /* DownloadImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81357A8026EE074E00DF6766 /* DownloadImageManager.swift */; };
 		81357A8326EE07C800DF6766 /* DownloadImageState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81357A8226EE07C800DF6766 /* DownloadImageState.swift */; };
+		81357A8B26EE1ED400DF6766 /* PersistanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81357A8A26EE1ED400DF6766 /* PersistanceManager.swift */; };
+		81357A8D26EE1EF000DF6766 /* PersistanceActionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81357A8C26EE1EF000DF6766 /* PersistanceActionType.swift */; };
 		81FA280326EBCE3F00251B65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA280226EBCE3F00251B65 /* AppDelegate.swift */; };
 		81FA280C26EBCE3F00251B65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81FA280B26EBCE3F00251B65 /* Assets.xcassets */; };
 		81FA280F26EBCE3F00251B65 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81FA280D26EBCE3F00251B65 /* LaunchScreen.storyboard */; };
@@ -81,6 +83,8 @@
 		81357A7D26EDFB0D00DF6766 /* GetImageFromURLViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetImageFromURLViewController.swift; sourceTree = "<group>"; };
 		81357A8026EE074E00DF6766 /* DownloadImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadImageManager.swift; sourceTree = "<group>"; };
 		81357A8226EE07C800DF6766 /* DownloadImageState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadImageState.swift; sourceTree = "<group>"; };
+		81357A8A26EE1ED400DF6766 /* PersistanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceManager.swift; sourceTree = "<group>"; };
+		81357A8C26EE1EF000DF6766 /* PersistanceActionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceActionType.swift; sourceTree = "<group>"; };
 		81FA27FF26EBCE3F00251B65 /* Favorite Places.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Favorite Places.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81FA280226EBCE3F00251B65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81FA280B26EBCE3F00251B65 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -142,20 +146,55 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		81146ADB26EC9F9000EB6413 /* Authentication service */ = {
-			isa = PBXGroup;
-			children = (
-				81146ADC26EC9FCC00EB6413 /* AuthenticationManager.swift */,
-			);
-			path = "Authentication service";
-			sourceTree = "<group>";
-		};
-		81357A7F26EE072600DF6766 /* Download image service */ = {
+		81357A8426EE1E3100DF6766 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
 				81357A8026EE074E00DF6766 /* DownloadImageManager.swift */,
+				81146ADC26EC9FCC00EB6413 /* AuthenticationManager.swift */,
+				81357A8A26EE1ED400DF6766 /* PersistanceManager.swift */,
 			);
-			path = "Download image service";
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		81357A8526EE1E6900DF6766 /* Label */ = {
+			isa = PBXGroup;
+			children = (
+				81FA283626EBD23E00251B65 /* FavoritePlacesLabel.swift */,
+			);
+			path = Label;
+			sourceTree = "<group>";
+		};
+		81357A8626EE1E7000DF6766 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				81146AFB26ED4B4F00EB6413 /* VerticalButtonStack.swift */,
+				81FA284526EBD8C500251B65 /* FavoritePlacesButton.swift */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
+		81357A8726EE1E7400DF6766 /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				81146AED26ECC78D00EB6413 /* FavoritePlacesAlertViewController.swift */,
+			);
+			path = "View Controller";
+			sourceTree = "<group>";
+		};
+		81357A8826EE1E7E00DF6766 /* Text Field */ = {
+			isa = PBXGroup;
+			children = (
+				81FA285726EBFB2A00251B65 /* FavoritePlacesTextField.swift */,
+			);
+			path = "Text Field";
+			sourceTree = "<group>";
+		};
+		81357A8926EE1E8A00DF6766 /* Navigation Controller */ = {
+			isa = PBXGroup;
+			children = (
+				81FA284B26EBED3B00251B65 /* FavoritePlacesNavigationController.swift */,
+			);
+			path = "Navigation Controller";
 			sourceTree = "<group>";
 		};
 		81FA27F626EBCE3F00251B65 = {
@@ -185,9 +224,8 @@
 				81FA283F26EBD82600251B65 /* View */,
 				81FA283E26EBD81200251B65 /* Model */,
 				81FA284026EBD84100251B65 /* Enum */,
-				81357A7F26EE072600DF6766 /* Download image service */,
-				81146ADB26EC9F9000EB6413 /* Authentication service */,
 				81FA284326EBD87300251B65 /* Custom component */,
+				81357A8426EE1E3100DF6766 /* Managers */,
 				81FA284126EBD85500251B65 /* Extension */,
 				81FA284426EBD89F00251B65 /* Essential */,
 				81FA281026EBCE3F00251B65 /* Info.plist */,
@@ -235,6 +273,7 @@
 				81146AE426ECAD3500EB6413 /* AuthenticationState.swift */,
 				81146AE626ECADCF00EB6413 /* FavoritePlacesError.swift */,
 				81357A8226EE07C800DF6766 /* DownloadImageState.swift */,
+				81357A8C26EE1EF000DF6766 /* PersistanceActionType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -256,12 +295,11 @@
 		81FA284326EBD87300251B65 /* Custom component */ = {
 			isa = PBXGroup;
 			children = (
-				81FA283626EBD23E00251B65 /* FavoritePlacesLabel.swift */,
-				81FA284526EBD8C500251B65 /* FavoritePlacesButton.swift */,
-				81FA284B26EBED3B00251B65 /* FavoritePlacesNavigationController.swift */,
-				81FA285726EBFB2A00251B65 /* FavoritePlacesTextField.swift */,
-				81146AED26ECC78D00EB6413 /* FavoritePlacesAlertViewController.swift */,
-				81146AFB26ED4B4F00EB6413 /* VerticalButtonStack.swift */,
+				81357A8926EE1E8A00DF6766 /* Navigation Controller */,
+				81357A8826EE1E7E00DF6766 /* Text Field */,
+				81357A8726EE1E7400DF6766 /* View Controller */,
+				81357A8626EE1E7000DF6766 /* Button */,
+				81357A8526EE1E6900DF6766 /* Label */,
 			);
 			path = "Custom component";
 			sourceTree = "<group>";
@@ -459,6 +497,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81357A8B26EE1ED400DF6766 /* PersistanceManager.swift in Sources */,
 				81146AFC26ED4B4F00EB6413 /* VerticalButtonStack.swift in Sources */,
 				81146AF826ED2D0200EB6413 /* AddFavoritePlaceViewController.swift in Sources */,
 				81146AE526ECAD3500EB6413 /* AuthenticationState.swift in Sources */,
@@ -485,6 +524,7 @@
 				81FA285626EBF65900251B65 /* CGFloatExtension.swift in Sources */,
 				81146AF626ECF0DE00EB6413 /* FavoritePlace.swift in Sources */,
 				81FA283326EBCF0000251B65 /* LandingViewController.swift in Sources */,
+				81357A8D26EE1EF000DF6766 /* PersistanceActionType.swift in Sources */,
 				81146AE326ECA7FF00EB6413 /* User.swift in Sources */,
 				81146AF226ECEE5800EB6413 /* MKMapViewExtension.swift in Sources */,
 				81FA283526EBD0E300251B65 /* UIImageExtension.swift in Sources */,
@@ -586,7 +626,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -641,7 +681,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -658,6 +698,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FBJ8Y47CN8;
 				INFOPLIST_FILE = "Favorite Places/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -678,6 +719,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FBJ8Y47CN8;
 				INFOPLIST_FILE = "Favorite Places/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
