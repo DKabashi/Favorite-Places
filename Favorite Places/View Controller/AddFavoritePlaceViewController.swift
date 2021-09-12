@@ -39,6 +39,10 @@ class AddFavoritePlaceViewController: UIViewController {
     
     private func setupView() {
         view.backgroundColor = .white
+        view.observeTap().subscribe(onNext: { [weak self] _ in
+            guard let self = self else { return }
+            self.view.endEditing(true)
+        }).disposed(by: disposeBag)
     }
     
     private func setupBackButton() {
@@ -72,6 +76,7 @@ class AddFavoritePlaceViewController: UIViewController {
         uploadImagePlaceHolderLabel.layer.zPosition = -1
         uploadImagePlaceHolderLabel.text = "Upload an image"
         uploadImagePlaceHolderLabel.textAlignment = .center
+        previewUploadImageView.clipsToBounds = true
         uploadImagePlaceHolderLabel.centerXAnchor.constraint(equalTo: previewUploadImageView.centerXAnchor).isActive = true
         uploadImagePlaceHolderLabel.centerYAnchor.constraint(equalTo: previewUploadImageView.centerYAnchor).isActive = true
         uploadImagePlaceHolderLabel.widthAnchor.constraint(equalTo: previewUploadImageView.widthAnchor, multiplier: 0.5).isActive = true
@@ -95,9 +100,17 @@ class AddFavoritePlaceViewController: UIViewController {
     
     private func setupLocationNameTextField() {
         view.add(locationNameTextField)
+        locationNameTextField.returnKeyType = .done
         locationNameTextField.topAnchor.constraint(equalTo: locationNameLabel.bottomAnchor, constant: .padding).isActive = true
         locationNameTextField.leadingAnchor.constraint(equalTo: locationNameLabel.leadingAnchor).isActive = true
         locationNameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -.padding).isActive = true
+        observeLocationNameTextFieldEditing()
+    }
+    
+    private func observeLocationNameTextFieldEditing() {
+        locationNameTextField.rx.controlEvent([.editingDidEndOnExit]).subscribe(onNext: {
+            self.locationNameTextField.resignFirstResponder()
+        }).disposed(by: disposeBag)
     }
     
     private func setupUploadLabel() {
@@ -122,6 +135,45 @@ class AddFavoritePlaceViewController: UIViewController {
         uploadButtonsStackView.leadingAnchor.constraint(equalTo: uploadLabel.leadingAnchor).isActive = true
         uploadButtonsStackView.trailingAnchor.constraint(equalTo: uploadLabel.trailingAnchor).isActive = true
         uploadButtonsStackView.heightAnchor.constraint(equalToConstant: 110).isActive = true
+        
+        observeCameraButtonTap()
+        observePhotoLibraryButtonTap()
+        observeUploadFromURLButtonTap()
+    }
+    
+    private func observeCameraButtonTap() {
+        uploadFromCameraButton.observeTap().subscribe(onNext: {[weak self] _ in
+            guard let self = self else { return }
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                self.getImage(using: .camera)
+            }
+        }).disposed(by: disposeBag)
+    }
+    
+    private func observePhotoLibraryButtonTap() {
+        uploadFromGalleryButton.observeTap().subscribe(onNext: {[weak self] _ in
+            guard let self = self else { return }
+            self.getImage(using: .photoLibrary)
+        }).disposed(by: disposeBag)
+    }
+    
+    private func observeUploadFromURLButtonTap() {
+        uploadFromURLButton.observeTap().subscribe(onNext: {[weak self] _ in
+            guard let self = self else { return }
+            let getImageFromURLVC = GetImageFromURLViewController()
+            getImageFromURLVC.modalPresentationStyle = .overFullScreen
+            getImageFromURLVC.modalTransitionStyle = .crossDissolve
+            self.present(getImageFromURLVC, animated: true)
+        }).disposed(by: disposeBag)
+    }
+    
+    
+    private func getImage(using sourceType: UIImagePickerController.SourceType) {
+        let vc = UIImagePickerController()
+        vc.sourceType = sourceType
+        vc.allowsEditing = true
+        vc.delegate = self
+        present(vc, animated: true)
     }
     
     private func setupAddFavoritePlaceButton() {
@@ -130,6 +182,20 @@ class AddFavoritePlaceViewController: UIViewController {
         addFavoritePlaceButton.topAnchor.constraint(equalTo: uploadButtonsStackView.bottomAnchor, constant: .padding * 3).isActive = true
         addFavoritePlaceButton.leadingAnchor.constraint(equalTo: uploadButtonsStackView.leadingAnchor).isActive = true
         addFavoritePlaceButton.trailingAnchor.constraint(equalTo: uploadButtonsStackView.trailingAnchor).isActive = true
-        
+        addFavoritePlaceButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+    }
+}
+
+
+extension AddFavoritePlaceViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true)
+
+        guard let image = info[.editedImage] as? UIImage else {
+            print("No image found")
+            return
+        }
+
+        previewUploadImageView.image = image
     }
 }

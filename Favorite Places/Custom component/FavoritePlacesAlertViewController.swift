@@ -66,6 +66,7 @@ class FavoritePlacesAlertViewController: UIViewController {
     
     private func setupTitleLabel() {
         view.add(titleLabel)
+        titleLabel.textAlignment = .center
         titleLabel.font = .systemFont(ofSize: 25, weight: .bold)
         titleLabel.text = alertTitle
         titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: .padding).isActive = true

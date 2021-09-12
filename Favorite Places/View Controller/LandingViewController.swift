@@ -66,6 +66,7 @@ class LandingViewController: UIViewController {
         signupButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -80).isActive = true
         signupButton.leadingAnchor.constraint(equalTo: descriptionLabel.leadingAnchor).isActive = true
         signupButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.4).isActive = true
+        signupButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
         observeSignupButtonTap()
     }
     
@@ -83,6 +84,7 @@ class LandingViewController: UIViewController {
         loginButton.bottomAnchor.constraint(equalTo: signupButton.bottomAnchor).isActive = true
         loginButton.trailingAnchor.constraint(equalTo: descriptionLabel.trailingAnchor).isActive = true
         loginButton.widthAnchor.constraint(equalTo: signupButton.widthAnchor).isActive = true
+        loginButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
         observeLoginButtonTap()
     }
     

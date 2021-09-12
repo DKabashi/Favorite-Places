@@ -11,6 +11,7 @@ class FavoritePlacesButton: UIButton {
     
     init(style: ButtonStyle) {
         super.init(frame: .zero)
+        translatesAutoresizingMaskIntoConstraints = false
         layer.cornerRadius = .defaultCornerRadius
         titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .bold)
         switch style {
@@ -19,15 +20,11 @@ class FavoritePlacesButton: UIButton {
             layer.borderWidth = 2
             layer.borderColor = UIColor.customLightBlue.cgColor
             setTitleColor(.customLightBlue, for: .normal)
-            heightAnchor.constraint(equalToConstant: 60).isActive = true
         case .filled:
             backgroundColor = .customLightBlue
             setTitleColor(.white, for: .normal)
-            heightAnchor.constraint(equalToConstant: 60).isActive = true
         case .squareWithImage:
             backgroundColor = .white
-            widthAnchor.constraint(equalToConstant: 80).isActive = true
-            heightAnchor.constraint(equalToConstant: 80).isActive = true
             contentVerticalAlignment = .fill
             contentHorizontalAlignment = .fill
             imageView?.contentMode = .scaleAspectFit

@@ -99,6 +99,7 @@ class AuthenticationView: UIView {
         authenticateButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: .padding * 4).isActive = true
         authenticateButton.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).isActive = true
         authenticateButton.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor).isActive = true
+        authenticateButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
         observeAuthenticationButtonTap()
     }
     
