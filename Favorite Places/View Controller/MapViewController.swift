@@ -18,7 +18,7 @@ class MapViewController: UIViewController {
     private let favoritePlacesButton = FavoritePlacesButton(style: .squareWithImage)
     private let newFavoritePlace = PublishRelay<FavoritePlace>()
     private var disposeBag = DisposeBag()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupMapView()
@@ -109,7 +109,9 @@ class MapViewController: UIViewController {
     private func observeFavoritePlacesButtonTap() {
         favoritePlacesButton.rx.tap.subscribe(onNext: {[weak self] _ in
             guard let self = self else { return }
-            self.present(FavoritesListViewController(), animated: true)
+            let favoritesListVC = FavoritesListViewController()
+            favoritesListVC.selectedFavoritePlace.bind(to: self.mapView.selectedFavoritePlace).disposed(by: self.disposeBag)
+            self.present(favoritesListVC, animated: true)
         }).disposed(by: disposeBag)
     }
     

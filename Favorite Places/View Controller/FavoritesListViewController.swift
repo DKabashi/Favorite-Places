@@ -20,6 +20,8 @@ class FavoritesListViewController: UIViewController {
     private let persistanceManager = PersistenceManager()
     private var favoritePlaces = BehaviorRelay<[FavoritePlace]>(value: [])
     
+    let selectedFavoritePlace = PublishRelay<FavoritePlace>()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -98,12 +100,24 @@ class FavoritesListViewController: UIViewController {
         favoritesListCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         favoritesListCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         favoritesListCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        setupCollectionViewCellsWithDataSource()
+        observeCollectionViewCells()
+    }
+    
+    private func setupCollectionViewCellsWithDataSource() {
         favoritePlaces.bind(to: favoritesListCollectionView.rx
                                 .items(cellIdentifier: "FavoritePlaceCell", cellType: FavoritePlaceCollectionViewCell.self)) {[weak self] index, favoritePlace, cell in
             guard let _ = self else { return }
             cell.configure(with: favoritePlace)
-    }.disposed(by: disposeBag)
-        
+        }.disposed(by: disposeBag)
+    }
+    
+    private func observeCollectionViewCells() {
+        favoritesListCollectionView.rx.modelSelected(FavoritePlace.self).subscribe(onNext: { [weak self] favoritePlace in
+            guard let self = self else { return }
+            self.selectedFavoritePlace.accept(favoritePlace)
+            self.dismiss(animated: true)
+        }).disposed(by: disposeBag)
     }
     
     private func observeBackButtonTap() {

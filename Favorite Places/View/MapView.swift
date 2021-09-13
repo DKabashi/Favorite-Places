@@ -10,10 +10,13 @@ import RxSwift
 import RxRelay
 
 class MapView: MKMapView {
-    private let disposeBag = DisposeBag()
+    
     private let persistanceManager = PersistenceManager()
-    let annotationRequestWithCoordinates = PublishRelay<CLLocationCoordinate2D>()
     private var locationManager: CLLocationManager?
+    private let disposeBag = DisposeBag()
+    
+    let annotationRequestWithCoordinates = PublishRelay<CLLocationCoordinate2D>()
+    let selectedFavoritePlace = PublishRelay<FavoritePlace>()
     
     init() {
         super.init(frame: .zero)
@@ -22,11 +25,13 @@ class MapView: MKMapView {
         observeNewAnnotationRequest()
         setupLocationManager()
         checkLocationAuthorization()
+        observeSelectedFavoritePlace()
     }
     
     private func setupMap() {
         let initialLocation = CLLocation(latitude: 42.65526675518743, longitude: 21.1804951825126)
         centerToLocation(initialLocation)
+        isRotateEnabled = false
         delegate = self
     }
     
@@ -59,6 +64,14 @@ class MapView: MKMapView {
         locationManager?.delegate = self
         locationManager?.requestWhenInUseAuthorization()
         locationManager?.requestLocation()
+    }
+    
+    private func observeSelectedFavoritePlace() {
+        selectedFavoritePlace.subscribe(onNext: { [weak self] favoritePlace in
+            guard let self = self else { return }
+            let favoritePlaceLocation = CLLocation(latitude: favoritePlace.latitude, longitude: favoritePlace.longitude)
+            self.centerToLocation(favoritePlaceLocation)
+        }).disposed(by: disposeBag)
     }
     
      func goToUserLocation() {
