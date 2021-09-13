@@ -13,6 +13,7 @@ class AddFavoritePlaceViewController: UIViewController {
     private let previewUploadImageView = UIImageView()
     private let uploadImagePlaceHolderLabel = FavoritePlacesLabel(type: .description)
     private let backButton = BackButton()
+    private let deleteButton = UIButton()
     private let locationNameLabel = FavoritePlacesLabel(type: .description)
     private let locationNameTextField = FavoritePlacesTextField()
     private let uploadLabel = FavoritePlacesLabel(type: .description)
@@ -24,11 +25,11 @@ class AddFavoritePlaceViewController: UIViewController {
     private let imageFromURL = PublishRelay<UIImage?>()
     private let disposeBag = DisposeBag()
     private let persistanceManager = PersistenceManager()
-    private var favoritePlace: FavoritePlace?
     
+    var favoritePlace: FavoritePlace?
     var isEditingMode: Bool = false
     let additionSucceededWithFavoritePlace = PublishRelay<FavoritePlace>()
-    
+    let favoritePlaceItemChanged = PublishRelay<Bool>()
     var latitude: Double!
     var longitude: Double!
     
@@ -45,6 +46,9 @@ class AddFavoritePlaceViewController: UIViewController {
         setupAddFavoritePlaceButton()
         observeImageFromURL()
         observePersistanceStatus()
+        if isEditingMode {
+            setupForEditingFavoritePlaceMode()
+        }
     }
     
     private func setupView() {
@@ -225,10 +229,53 @@ class AddFavoritePlaceViewController: UIViewController {
             }
         }).disposed(by: disposeBag)
         
-        persistanceManager.persistanceSucceded.subscribe(onNext: {[weak self] _ in
+        persistanceManager.persistanceSucceded.subscribe(onNext: {[weak self] actionType in
             guard let self = self else { return }
-            self.additionSucceededWithFavoritePlace.accept(self.favoritePlace!)
-            self.dismiss(animated: true)
+            switch actionType {
+            case .add:
+                self.additionSucceededWithFavoritePlace.accept(self.favoritePlace!)
+                self.dismiss(animated: true)
+            case .remove:
+                Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { _ in
+                    self.dismiss(animated: true)
+                }
+                self.favoritePlaceItemChanged.accept(true)
+            case .edit:
+                self.dismiss(animated: true)
+                self.favoritePlaceItemChanged.accept(true)
+            }
+           
+        }).disposed(by: disposeBag)
+    }
+    
+    private func setupForEditingFavoritePlaceMode() {
+        guard let favoritePlace = favoritePlace else {
+            return
+        }
+        previewUploadImageView.image = UIImage(data: favoritePlace.imageData)
+        locationNameTextField.text = favoritePlace.title
+        addFavoritePlaceButton.setTitle("Finish editing", for: .normal)
+        setupDeleteButton()
+    }
+    
+    private func setupDeleteButton() {
+        view.add(deleteButton)
+
+        deleteButton.setTitleColor(.red, for: .normal)
+        deleteButton.setTitle("Delete", for: .normal)
+        deleteButton.centerYAnchor.constraint(equalTo: backButton.centerYAnchor).isActive = true
+        deleteButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -.padding).isActive = true
+        deleteButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        deleteButton.heightAnchor.constraint(equalTo: deleteButton.widthAnchor).isActive = true
+        observeDeleteButton()
+    }
+    
+    private func observeDeleteButton() {
+        deleteButton.rx.tap.subscribe(onNext: {[weak self] _ in
+            guard let self = self, let favoritePlace = self.favoritePlace else { return }
+            self.presentAlertWithTwoOptions(title: "Delete favorite place", message: "Are you sure you want to delete this favorite place?", buttonTitle: "Delete", alternativeButtonTitle: "Cancel", buttonCallback: {
+                self.persistanceManager.updateWith(favorite: favoritePlace, actionType: .remove)
+            }, alternativeButtonCallback: nil)
         }).disposed(by: disposeBag)
     }
 }

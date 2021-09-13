@@ -17,6 +17,7 @@ class MapViewController: UIViewController {
     private let locationButton = FavoritePlacesButton(style: .squareWithImage)
     private let favoritePlacesButton = FavoritePlacesButton(style: .squareWithImage)
     private let newFavoritePlace = PublishRelay<FavoritePlace>()
+    private let favoritePlacesListChanged = PublishRelay<Bool>()
     private var disposeBag = DisposeBag()
 
     override func viewDidLoad() {
@@ -30,6 +31,7 @@ class MapViewController: UIViewController {
         observeAddFavoritePlaceRequest()
         observeNewFavoritePlaces()
         observeDeniedLocationAuthorization()
+        observeFavoriteItemsListChanges()
     }
     
     private func setupMapView() {
@@ -112,6 +114,7 @@ class MapViewController: UIViewController {
             guard let self = self else { return }
             let favoritesListVC = FavoritesListViewController()
             favoritesListVC.selectedFavoritePlace.bind(to: self.mapView.selectedFavoritePlace).disposed(by: self.disposeBag)
+            favoritesListVC.listChanged.bind(to: self.favoritePlacesListChanged).disposed(by: self.disposeBag)
             self.present(favoritesListVC, animated: true)
         }).disposed(by: disposeBag)
     }
@@ -138,6 +141,13 @@ class MapViewController: UIViewController {
         mapView.deniedLocationAuthorizaton.subscribe(onNext: { [weak self] _ in
             guard let self = self else { return }
             self.presentAlert(title: "Go to user location failed", message: "Allow user location tracking authorization in settings to use this feature.")
+        }).disposed(by: disposeBag)
+    }
+    
+    private func observeFavoriteItemsListChanges() {
+        favoritePlacesListChanged.subscribe(onNext: { [weak self] _ in
+            guard let self = self else { return }
+            self.mapView.loadMapWithAnnotations()
         }).disposed(by: disposeBag)
     }
 }

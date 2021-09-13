@@ -19,6 +19,7 @@ class FavoritesListViewController: UIViewController {
     
     private let persistanceManager = PersistenceManager()
     private var favoritePlaces = BehaviorRelay<[FavoritePlace]>(value: [])
+    let listChanged = PublishRelay<Bool>()
     
     let selectedFavoritePlace = PublishRelay<FavoritePlace>()
     
@@ -30,13 +31,10 @@ class FavoritesListViewController: UIViewController {
         setupDescriptionLabel()
         setupEmptyDataLabel()
         setupCollectionView()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         updateFavoritesDataSource()
+        observeListChanges()
     }
-    
+
     private func setupView() {
         view.backgroundColor = .white
     }
@@ -51,8 +49,8 @@ class FavoritesListViewController: UIViewController {
                 self.favoritePlaces.accept(userSpecificResults)
             default:
                 self.favoritePlaces.accept([])
-                return
             }
+            self.favoritesListCollectionView.reloadData()
         }
     }
     
@@ -126,7 +124,11 @@ class FavoritesListViewController: UIViewController {
             }
             let gestureLocation = longPressGesture.location(in: self.favoritesListCollectionView)
             if let indexPath = self.favoritesListCollectionView.indexPathForItem(at: gestureLocation), let favoritePlaceCell = self.favoritesListCollectionView.cellForItem(at: indexPath) as? FavoritePlaceCollectionViewCell {
-                print(favoritePlaceCell.favoritePlace)
+                let editFavoritePlaceViewController = AddFavoritePlaceViewController()
+                editFavoritePlaceViewController.isEditingMode = true
+                editFavoritePlaceViewController.favoritePlace = favoritePlaceCell.favoritePlace
+                editFavoritePlaceViewController.favoritePlaceItemChanged.bind(to: self.listChanged).disposed(by: self.disposeBag)
+                self.present(editFavoritePlaceViewController, animated: true)
             }
         }).disposed(by: disposeBag)
     }
@@ -135,6 +137,13 @@ class FavoritesListViewController: UIViewController {
         backButton.rx.tap.subscribe(onNext: { [weak self] _ in
             guard let self = self else { return }
             self.dismiss(animated: true)
+        }).disposed(by: disposeBag)
+    }
+    
+    private func observeListChanges() {
+        listChanged.subscribe(onNext: { [weak self] _ in
+            guard let self = self else { return }
+            self.updateFavoritesDataSource()
         }).disposed(by: disposeBag)
     }
 }

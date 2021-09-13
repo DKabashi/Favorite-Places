@@ -10,12 +10,14 @@ import RxRelay
 
 class PersistenceManager {
     private let defaults = UserDefaults.standard
+    private var currentActionType = PersistenceActionType.add
     enum Keys { static let favorites = "favorites" }
     let failedToPersistWithError = PublishRelay<FavoritePlacesError>()
-    let persistanceSucceded = PublishRelay<Bool>()
+    let persistanceSucceded = PublishRelay<PersistenceActionType>()
     
     func updateWith(favorite: FavoritePlace, actionType: PersistenceActionType) {
         retrieveFavorites { result in
+            self.currentActionType = actionType
             switch result {
             case .success(var favorites):
                 
@@ -63,7 +65,7 @@ class PersistenceManager {
             let encoder = JSONEncoder()
             let encodedFavorites = try encoder.encode(favorites)
             defaults.set(encodedFavorites, forKey: Keys.favorites)
-            persistanceSucceded.accept(true)
+            persistanceSucceded.accept(currentActionType)
         } catch {
             failedToPersistWithError.accept(.unableToFavorite)
         }

@@ -36,10 +36,14 @@ class MapView: MKMapView {
         delegate = self
     }
     
-    private func loadMapWithAnnotations() {
+    func loadMapWithAnnotations() {
         persistanceManager.retrieveFavorites { result in
             switch result {
             case .success(let favoritePlaces):
+                self.annotations.forEach {
+                    self.removeAnnotation($0)
+                }
+                
                 favoritePlaces.forEach {
                     if $0.user.email == AuthenticationManager.currentUser?.email ?? "" {
                         self.addAnnotation($0)
