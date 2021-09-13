@@ -38,7 +38,7 @@ class AuthenticationView: UIView {
     private func setupTitleLabel() {
         add(titleLabel)
         titleLabel.text = isLogin ? "Welcome\nBack" : "Create\nAccount"
-        titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: .padding).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: UIScreen.isIphone8PlusSizeOrLower ? 0 : .padding).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: .padding).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -.padding).isActive = true
         titleLabel.heightAnchor.constraint(equalToConstant: 120).isActive = true
@@ -46,8 +46,9 @@ class AuthenticationView: UIView {
     
     private func setupEmailLabel() {
         add(emailLabel)
+        emailLabel.font = .systemFont(ofSize: 24)
         emailLabel.text = isLogin ? "Email:" : "Your email:"
-        emailLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: .padding * 3).isActive = true
+        emailLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: UIScreen.isIphone8PlusSizeOrLower ? .padding : .padding * 3).isActive = true
         emailLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).isActive = true
         emailLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor).isActive = true
         emailLabel.heightAnchor.constraint(equalToConstant: 35).isActive = true
@@ -57,7 +58,7 @@ class AuthenticationView: UIView {
         add(emailTextField)
         observeEmailTextFieldEditing()
         emailTextField.returnKeyType = .continue
-        emailTextField.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: .padding).isActive = true
+        emailTextField.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: .padding / 2).isActive = true
         emailTextField.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).isActive = true
         emailTextField.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor).isActive = true
     }
@@ -70,10 +71,11 @@ class AuthenticationView: UIView {
     
     private func setupPasswordLabel() {
         add(passwordLabel)
+        passwordLabel.font = .systemFont(ofSize: 24)
         observePasswordTextFieldEditing()
         passwordTextField.returnKeyType = .done
         passwordLabel.text = isLogin ? "Password:" : "Your password:"
-        passwordLabel.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: .padding * 2).isActive = true
+        passwordLabel.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: UIScreen.isIphone8Size ? .padding : .padding * 2).isActive = true
         passwordLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).isActive = true
         passwordLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor).isActive = true
         passwordLabel.heightAnchor.constraint(equalToConstant: 35).isActive = true
@@ -88,7 +90,7 @@ class AuthenticationView: UIView {
     private func setupPasswordTextField() {
         add(passwordTextField)
         passwordTextField.isSecureTextEntry = true
-        passwordTextField.topAnchor.constraint(equalTo: passwordLabel.bottomAnchor, constant: .padding).isActive = true
+        passwordTextField.topAnchor.constraint(equalTo: passwordLabel.bottomAnchor, constant: .padding / 2).isActive = true
         passwordTextField.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).isActive = true
         passwordTextField.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor).isActive = true
     }
@@ -96,7 +98,7 @@ class AuthenticationView: UIView {
     private func setupAuthenticateButton() {
         add(authenticateButton)
         authenticateButton.setTitle(isLogin ? "Sign In" : "Sign Up", for: .normal)
-        authenticateButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: .padding * 4).isActive = true
+        authenticateButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: UIScreen.isIphone8PlusSizeOrLower ? .padding * 3 : .padding * 4).isActive = true
         authenticateButton.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).isActive = true
         authenticateButton.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor).isActive = true
         authenticateButton.heightAnchor.constraint(equalToConstant: 60).isActive = true

@@ -20,6 +20,7 @@ class FavoritePlacesTextField: UITextField {
         rightView = UIView(frame: paddingRect)
         rightViewMode = .always
         autocorrectionType = .no
+        autocapitalizationType = .none
         heightAnchor.constraint(equalToConstant: 60).isActive = true
     }
     

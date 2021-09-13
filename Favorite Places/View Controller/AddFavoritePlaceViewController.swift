@@ -71,7 +71,7 @@ class AddFavoritePlaceViewController: UIViewController {
         previewUploadImageView.layer.cornerRadius = 10
         previewUploadImageView.layer.borderColor = UIColor.lightGray.cgColor
         previewUploadImageView.layer.borderWidth = 2
-        previewUploadImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: UIScreen.isIphone6Size ? .padding : .padding * 2).isActive = true
+        previewUploadImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: UIScreen.isIphone8PlusSizeOrLower ? .padding : .padding * 2).isActive = true
         previewUploadImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         previewUploadImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.4).isActive = true
         previewUploadImageView.heightAnchor.constraint(equalTo: previewUploadImageView.widthAnchor).isActive = true
@@ -99,7 +99,7 @@ class AddFavoritePlaceViewController: UIViewController {
     private func setupLocationNameLabel() {
         view.add(locationNameLabel)
         locationNameLabel.text = "Name of location (Optional):"
-        locationNameLabel.topAnchor.constraint(equalTo: isEditingMode ? changeLocationButton.bottomAnchor : previewUploadImageView.bottomAnchor, constant: UIScreen.isIphone6Size ? .padding : .padding * 3).isActive = true
+        locationNameLabel.topAnchor.constraint(equalTo: isEditingMode ? changeLocationButton.bottomAnchor : previewUploadImageView.bottomAnchor, constant: UIScreen.isIphone8PlusSizeOrLower ? .padding : .padding * (isEditingMode ? 2 : 3)).isActive = true
         locationNameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .padding).isActive = true
         locationNameLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
     }
@@ -122,7 +122,7 @@ class AddFavoritePlaceViewController: UIViewController {
     private func setupUploadLabel() {
         view.add(uploadLabel)
         uploadLabel.text = "Upload image from:"
-        uploadLabel.topAnchor.constraint(equalTo: locationNameTextField.bottomAnchor, constant: UIScreen.isIphone6Size ? .padding : .padding * 3).isActive = true
+        uploadLabel.topAnchor.constraint(equalTo: locationNameTextField.bottomAnchor, constant: UIScreen.isIphone8PlusSizeOrLower ? .padding : .padding * 3).isActive = true
         uploadLabel.leadingAnchor.constraint(equalTo: locationNameTextField.leadingAnchor).isActive = true
         uploadLabel.trailingAnchor.constraint(equalTo: locationNameTextField.trailingAnchor).isActive = true
         uploadLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
@@ -186,7 +186,7 @@ class AddFavoritePlaceViewController: UIViewController {
     private func setupAddFavoritePlaceButton() {
         view.add(addFavoritePlaceButton)
         addFavoritePlaceButton.setTitle(isEditingMode ? "Finish editing" : "Add favorite place", for: .normal)
-        addFavoritePlaceButton.topAnchor.constraint(equalTo: uploadButtonsStackView.bottomAnchor, constant: UIScreen.isIphone6Size ? .padding : .padding * 3).isActive = true
+        addFavoritePlaceButton.topAnchor.constraint(equalTo: uploadButtonsStackView.bottomAnchor, constant: UIScreen.isIphone8PlusSizeOrLower ? .padding : .padding * 3).isActive = true
         addFavoritePlaceButton.leadingAnchor.constraint(equalTo: uploadButtonsStackView.leadingAnchor).isActive = true
         addFavoritePlaceButton.trailingAnchor.constraint(equalTo: uploadButtonsStackView.trailingAnchor).isActive = true
         addFavoritePlaceButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
@@ -300,7 +300,7 @@ class AddFavoritePlaceViewController: UIViewController {
         view.add(changeLocationButton)
         changeLocationButton.setTitle("Edit location", for: .normal)
         changeLocationButton.titleLabel?.font = .systemFont(ofSize: 20)
-        changeLocationButton.topAnchor.constraint(equalTo: previewUploadImageView.bottomAnchor, constant: UIScreen.isIphone6Size ? .padding : .padding * 3).isActive = true
+        changeLocationButton.topAnchor.constraint(equalTo: previewUploadImageView.bottomAnchor, constant: UIScreen.isIphone8PlusSizeOrLower ? .padding : .padding * 2).isActive = true
         changeLocationButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .padding).isActive = true
         changeLocationButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -.padding).isActive = true
         changeLocationButton.heightAnchor.constraint(equalToConstant: 40).isActive = true

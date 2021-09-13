@@ -63,7 +63,12 @@ class LandingViewController: UIViewController {
     private func setupSignupButton() {
         view.add(signupButton)
         signupButton.setTitle("Sign up", for: .normal)
-        signupButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -80).isActive = true
+        if UIScreen.isIphone8Size {
+            signupButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: .padding).isActive = true
+        } else {
+            signupButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -80).isActive = true
+        }
+        
         signupButton.leadingAnchor.constraint(equalTo: descriptionLabel.leadingAnchor).isActive = true
         signupButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.4).isActive = true
         signupButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
@@ -81,7 +86,11 @@ class LandingViewController: UIViewController {
     private func setupLoginButton() {
         view.add(loginButton)
         loginButton.setTitle("Log in", for: .normal)
-        loginButton.bottomAnchor.constraint(equalTo: signupButton.bottomAnchor).isActive = true
+        if UIScreen.isIphone8Size {
+            loginButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: .padding).isActive = true
+        } else {
+            loginButton.bottomAnchor.constraint(equalTo: signupButton.bottomAnchor).isActive = true
+        }
         loginButton.trailingAnchor.constraint(equalTo: descriptionLabel.trailingAnchor).isActive = true
         loginButton.widthAnchor.constraint(equalTo: signupButton.widthAnchor).isActive = true
         loginButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
