@@ -31,7 +31,7 @@ class PersistenceManager {
                     favorites.append(favorite)
                     
                 case .remove:
-                    favorites.removeAll { $0.latitude == favorite.latitude && $0.longitude == favorite.longitude && $0.user.email == favorite.user.email }
+                    favorites.removeAll { $0.id == favorite.id }
                 case .edit:
                     #warning("implement")
                 }

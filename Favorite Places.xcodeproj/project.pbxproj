@@ -33,6 +33,7 @@
 		81357A9526EE5B6A00DF6766 /* UICollectionViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81357A9426EE5B6A00DF6766 /* UICollectionViewExtension.swift */; };
 		81357A9826EE5C3700DF6766 /* FavoritePlacesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81357A9726EE5C3700DF6766 /* FavoritePlacesCollectionView.swift */; };
 		81357A9A26EF20B300DF6766 /* UIScreenExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81357A9926EF20B300DF6766 /* UIScreenExtension.swift */; };
+		81357A9C26EF492C00DF6766 /* EditMapLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81357A9B26EF492C00DF6766 /* EditMapLocationViewController.swift */; };
 		81FA280326EBCE3F00251B65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA280226EBCE3F00251B65 /* AppDelegate.swift */; };
 		81FA280C26EBCE3F00251B65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81FA280B26EBCE3F00251B65 /* Assets.xcassets */; };
 		81FA280F26EBCE3F00251B65 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81FA280D26EBCE3F00251B65 /* LaunchScreen.storyboard */; };
@@ -97,6 +98,7 @@
 		81357A9426EE5B6A00DF6766 /* UICollectionViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewExtension.swift; sourceTree = "<group>"; };
 		81357A9726EE5C3700DF6766 /* FavoritePlacesCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePlacesCollectionView.swift; sourceTree = "<group>"; };
 		81357A9926EF20B300DF6766 /* UIScreenExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreenExtension.swift; sourceTree = "<group>"; };
+		81357A9B26EF492C00DF6766 /* EditMapLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMapLocationViewController.swift; sourceTree = "<group>"; };
 		81FA27FF26EBCE3F00251B65 /* Favorite Places.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Favorite Places.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81FA280226EBCE3F00251B65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81FA280B26EBCE3F00251B65 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 				81146AF726ED2D0200EB6413 /* AddFavoritePlaceViewController.swift */,
 				81357A7D26EDFB0D00DF6766 /* GetImageFromURLViewController.swift */,
 				81357A8E26EE527400DF6766 /* FavoritesListViewController.swift */,
+				81357A9B26EF492C00DF6766 /* EditMapLocationViewController.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -550,6 +553,7 @@
 				81146AEE26ECC78D00EB6413 /* FavoritePlacesAlertViewController.swift in Sources */,
 				81FA280326EBCE3F00251B65 /* AppDelegate.swift in Sources */,
 				81146AF426ECEECD00EB6413 /* RxExtension.swift in Sources */,
+				81357A9C26EF492C00DF6766 /* EditMapLocationViewController.swift in Sources */,
 				81FA285626EBF65900251B65 /* CGFloatExtension.swift in Sources */,
 				81146AF626ECF0DE00EB6413 /* FavoritePlace.swift in Sources */,
 				81357A9A26EF20B300DF6766 /* UIScreenExtension.swift in Sources */,

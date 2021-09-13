@@ -19,21 +19,34 @@ class MapView: MKMapView {
     let selectedFavoritePlace = PublishRelay<FavoritePlace>()
     let deniedLocationAuthorizaton = PublishRelay<Bool>()
     
-    init() {
+    init(isEditing: Bool = false) {
         super.init(frame: .zero)
         setupMap()
-        loadMapWithAnnotations()
-        observeNewAnnotationRequest()
-        setupLocationManager()
-        checkLocationAuthorization()
-        observeSelectedFavoritePlace()
+        if !isEditing {
+            goToInitialLocation()
+            loadMapWithAnnotations()
+            observeNewAnnotationRequest()
+            setupLocationManager()
+            checkLocationAuthorization()
+            observeSelectedFavoritePlace()
+        } else {
+            observeNewLocationTap()
+        }
     }
     
     private func setupMap() {
-        let initialLocation = CLLocation(latitude: 42.65526675518743, longitude: 21.1804951825126)
-        centerToLocation(initialLocation)
         isRotateEnabled = false
         delegate = self
+    }
+    
+    private func goToInitialLocation() {
+        let initialLocation = CLLocation(latitude: 42.65526675518743, longitude: 21.1804951825126)
+        centerToLocation(initialLocation)
+    }
+    
+    func goToLocationForEditMode(favoritePlace: FavoritePlace) {
+        addAnnotation(favoritePlace)
+        centerToLocation(CLLocation(latitude: favoritePlace.latitude, longitude: favoritePlace.longitude))
     }
     
     func loadMapWithAnnotations() {
@@ -85,7 +98,7 @@ class MapView: MKMapView {
         }
         
         let authorizationStatus = CLLocationManager.authorizationStatus()
-        if authorizationStatus == .denied || authorizationStatus == .notDetermined || authorizationStatus != .restricted {
+        if authorizationStatus == .denied || authorizationStatus == .notDetermined {
             deniedLocationAuthorizaton.accept(true)
             return
         }
@@ -94,6 +107,15 @@ class MapView: MKMapView {
             let region = MKCoordinateRegion.init(center: location, latitudinalMeters: 4000, longitudinalMeters: 4000)
             setRegion(region, animated: true)
         }
+    }
+    
+    private func observeNewLocationTap() {
+        observeTap().subscribe(onNext: { [weak self] tap in
+            guard let self = self else { return }
+            let location = tap.location(in: self)
+            let coordinate = self.convert(location, toCoordinateFrom: self)
+            self.annotationRequestWithCoordinates.accept(coordinate)
+        }).disposed(by: disposeBag)
     }
     
     required init?(coder: NSCoder) {

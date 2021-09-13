@@ -14,6 +14,7 @@ class AddFavoritePlaceViewController: UIViewController {
     private let uploadImagePlaceHolderLabel = FavoritePlacesLabel(type: .description)
     private let backButton = BackButton()
     private let deleteButton = UIButton()
+    private let changeLocationButton = FavoritePlacesButton(style: .outline)
     private let locationNameLabel = FavoritePlacesLabel(type: .description)
     private let locationNameTextField = FavoritePlacesTextField()
     private let uploadLabel = FavoritePlacesLabel(type: .description)
@@ -25,6 +26,7 @@ class AddFavoritePlaceViewController: UIViewController {
     private let imageFromURL = PublishRelay<UIImage?>()
     private let disposeBag = DisposeBag()
     private let persistanceManager = PersistenceManager()
+    private let favoritePlaceNewCoordinate = PublishRelay<Coordinate>()
     
     var favoritePlace: FavoritePlace?
     var isEditingMode: Bool = false
@@ -38,6 +40,7 @@ class AddFavoritePlaceViewController: UIViewController {
         setupView()
         setupBackButton()
         setupUploadImageView()
+        if isEditingMode { setupForEditingFavoritePlaceMode() }
         setupUploadImagePlaceHolderLabel()
         setupLocationNameLabel()
         setupLocationNameTextField()
@@ -46,9 +49,6 @@ class AddFavoritePlaceViewController: UIViewController {
         setupAddFavoritePlaceButton()
         observeImageFromURL()
         observePersistanceStatus()
-        if isEditingMode {
-            setupForEditingFavoritePlaceMode()
-        }
     }
     
     private func setupView() {
@@ -71,7 +71,7 @@ class AddFavoritePlaceViewController: UIViewController {
         previewUploadImageView.layer.cornerRadius = 10
         previewUploadImageView.layer.borderColor = UIColor.lightGray.cgColor
         previewUploadImageView.layer.borderWidth = 2
-        previewUploadImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: .padding * 2).isActive = true
+        previewUploadImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: UIScreen.isIphone6Size ? .padding : .padding * 2).isActive = true
         previewUploadImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         previewUploadImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.4).isActive = true
         previewUploadImageView.heightAnchor.constraint(equalTo: previewUploadImageView.widthAnchor).isActive = true
@@ -99,7 +99,7 @@ class AddFavoritePlaceViewController: UIViewController {
     private func setupLocationNameLabel() {
         view.add(locationNameLabel)
         locationNameLabel.text = "Name of location (Optional):"
-        locationNameLabel.topAnchor.constraint(equalTo: previewUploadImageView.bottomAnchor, constant: UIScreen.isIphone6Size ? .padding : .padding * 3).isActive = true
+        locationNameLabel.topAnchor.constraint(equalTo: isEditingMode ? changeLocationButton.bottomAnchor : previewUploadImageView.bottomAnchor, constant: UIScreen.isIphone6Size ? .padding : .padding * 3).isActive = true
         locationNameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .padding).isActive = true
         locationNameLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
     }
@@ -185,7 +185,7 @@ class AddFavoritePlaceViewController: UIViewController {
     
     private func setupAddFavoritePlaceButton() {
         view.add(addFavoritePlaceButton)
-        addFavoritePlaceButton.setTitle("Add favorite place", for: .normal)
+        addFavoritePlaceButton.setTitle(isEditingMode ? "Finish editing" : "Add favorite place", for: .normal)
         addFavoritePlaceButton.topAnchor.constraint(equalTo: uploadButtonsStackView.bottomAnchor, constant: UIScreen.isIphone6Size ? .padding : .padding * 3).isActive = true
         addFavoritePlaceButton.leadingAnchor.constraint(equalTo: uploadButtonsStackView.leadingAnchor).isActive = true
         addFavoritePlaceButton.trailingAnchor.constraint(equalTo: uploadButtonsStackView.trailingAnchor).isActive = true
@@ -254,8 +254,9 @@ class AddFavoritePlaceViewController: UIViewController {
         }
         previewUploadImageView.image = UIImage(data: favoritePlace.imageData)
         locationNameTextField.text = favoritePlace.title
-        addFavoritePlaceButton.setTitle("Finish editing", for: .normal)
         setupDeleteButton()
+        setupChangeLocationButton()
+        observeFavoritePlaceNewCoordinate()
     }
     
     private func setupDeleteButton() {
@@ -276,6 +277,34 @@ class AddFavoritePlaceViewController: UIViewController {
             self.presentAlertWithTwoOptions(title: "Delete favorite place", message: "Are you sure you want to delete this favorite place?", buttonTitle: "Delete", alternativeButtonTitle: "Cancel", buttonCallback: {
                 self.persistanceManager.updateWith(favorite: favoritePlace, actionType: .remove)
             }, alternativeButtonCallback: nil)
+        }).disposed(by: disposeBag)
+    }
+    
+    private func setupChangeLocationButton() {
+        view.add(changeLocationButton)
+        changeLocationButton.setTitle("Edit location", for: .normal)
+        changeLocationButton.titleLabel?.font = .systemFont(ofSize: 20)
+        changeLocationButton.topAnchor.constraint(equalTo: previewUploadImageView.bottomAnchor, constant: UIScreen.isIphone6Size ? .padding : .padding * 3).isActive = true
+        changeLocationButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .padding).isActive = true
+        changeLocationButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -.padding).isActive = true
+        changeLocationButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        observeChangeLocationButton()
+    }
+    
+    private func observeChangeLocationButton() {
+        changeLocationButton.rx.tap.subscribe(onNext: {[weak self] _ in
+            guard let self = self, let favoritePlace = self.favoritePlace else { return }
+            let editMapVC = EditMapLocationViewController(favoritePlace: favoritePlace)
+            editMapVC.newFavoritePlaceCoordination.bind(to: self.favoritePlaceNewCoordinate).disposed(by: self.disposeBag)
+            self.present(editMapVC, animated: true)
+        }).disposed(by: disposeBag)
+    }
+    
+    private func observeFavoritePlaceNewCoordinate() {
+        favoritePlaceNewCoordinate.subscribe(onNext: {[weak self] coordinate in
+            guard let self = self else { return }
+            self.latitude = coordinate.latitude
+            self.longitude = coordinate.longitude
         }).disposed(by: disposeBag)
     }
 }
