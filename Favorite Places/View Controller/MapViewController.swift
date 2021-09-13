@@ -61,6 +61,14 @@ class MapViewController: UIViewController {
         helpButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .padding).isActive = true
         helpButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
         helpButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        observeHelpButtonTap()
+    }
+    
+    private func observeHelpButtonTap() {
+        helpButton.rx.tap.subscribe(onNext: {[weak self] _ in
+            guard let self = self else { return }
+            self.presentAlert(title: "Welcome", message: "🔹 Tap and hold in the map to add a new favorite location.\n🔹 Tap the person icon to view your email address or to sign out.\n🔹 Tap the location icon to go to your location.\n🔹 Tap the star icon to view the list of your favorite locations.", isBigAlert: true)
+        }).disposed(by: disposeBag)
     }
     
     private func setupUserButton() {

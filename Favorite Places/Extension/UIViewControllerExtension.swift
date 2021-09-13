@@ -15,11 +15,12 @@ extension UIViewController {
         }
     }
     
-    func presentAlert(title: String, message: String, buttonTitle: String = "Close") {
+    func presentAlert(title: String, message: String, buttonTitle: String = "Close", isBigAlert: Bool = false) {
         DispatchQueue.main.async {
             let alertVC = FavoritePlacesAlertViewController(title: title, message: message, buttonTitle: buttonTitle)
             alertVC.modalPresentationStyle = .overFullScreen
             alertVC.modalTransitionStyle = .crossDissolve
+            alertVC.isBigAlert = isBigAlert
             self.present(alertVC, animated: true)
         }
     }

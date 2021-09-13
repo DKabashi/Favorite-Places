@@ -28,6 +28,7 @@ class FavoritePlacesAlertViewController: UIViewController {
     var buttonCallback: (() -> ())?
     var alternativeButtonTitle: String?
     var alternativeButtonCallback:(() -> ())?
+    var isBigAlert: Bool = false
 
     init(title: String, message: String, buttonTitle: String, alternativeButtonTitle: String? = nil, buttonCallback: (() -> ())? = nil, alternativeButtonCallback: (() -> ())? = nil) {
         self.alertTitle = title
@@ -61,7 +62,12 @@ class FavoritePlacesAlertViewController: UIViewController {
         containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         containerView.widthAnchor.constraint(equalToConstant: 300).isActive = true
-        containerView.heightAnchor.constraint(equalToConstant: 230).isActive = true
+        if isBigAlert {
+            containerView.heightAnchor.constraint(greaterThanOrEqualToConstant: 230).isActive = true
+        } else {
+            containerView.heightAnchor.constraint(equalToConstant: 230).isActive = true
+        }
+        
     }
     
     private func setupTitleLabel() {
@@ -124,8 +130,8 @@ class FavoritePlacesAlertViewController: UIViewController {
     private func setupMessageLabel() {
         view.add(messageLabel)
         messageLabel.text = message
-        messageLabel.numberOfLines  = 4
-        messageLabel.font = .systemFont(ofSize: 25)
+        messageLabel.numberOfLines = 0
+        messageLabel.font = .systemFont(ofSize: 19)
         messageLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8).isActive = true
         messageLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: .padding).isActive = true
         messageLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -.padding).isActive = true
