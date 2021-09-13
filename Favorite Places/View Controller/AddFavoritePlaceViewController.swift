@@ -52,7 +52,7 @@ class AddFavoritePlaceViewController: UIViewController {
     }
     
     private func setupView() {
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         view.observeTap().subscribe(onNext: { [weak self] _ in
             guard let self = self else { return }
             self.view.endEditing(true)
@@ -85,7 +85,7 @@ class AddFavoritePlaceViewController: UIViewController {
         previewUploadImageView.clipsToBounds = true
         uploadImagePlaceHolderLabel.centerXAnchor.constraint(equalTo: previewUploadImageView.centerXAnchor).isActive = true
         uploadImagePlaceHolderLabel.centerYAnchor.constraint(equalTo: previewUploadImageView.centerYAnchor).isActive = true
-        uploadImagePlaceHolderLabel.widthAnchor.constraint(equalTo: previewUploadImageView.widthAnchor, multiplier: 0.5).isActive = true
+        uploadImagePlaceHolderLabel.widthAnchor.constraint(equalTo: previewUploadImageView.widthAnchor, multiplier: 0.6).isActive = true
         uploadImagePlaceHolderLabel.heightAnchor.constraint(equalTo: uploadImagePlaceHolderLabel.widthAnchor).isActive = true
     }
     
@@ -136,6 +136,10 @@ class AddFavoritePlaceViewController: UIViewController {
         uploadButtonsStackView.axis = .horizontal
         uploadButtonsStackView.distribution = .fillEqually
         uploadButtonsStackView.spacing = 15
+        
+        if UIScreen.isIphone8Size {
+            uploadFromGalleryButton.buttonTitleLabel.font = .systemFont(ofSize: 15)
+        }
         
         uploadButtonsStackView.topAnchor.constraint(equalTo: uploadLabel.bottomAnchor, constant: .padding).isActive = true
         uploadButtonsStackView.leadingAnchor.constraint(equalTo: uploadLabel.leadingAnchor).isActive = true
@@ -331,7 +335,7 @@ extension AddFavoritePlaceViewController: UIImagePickerControllerDelegate, UINav
         picker.dismiss(animated: true)
 
         guard let image = info[.editedImage] as? UIImage else {
-            print("No image found")
+            presentAlert(title: "Failed to get images", message: "No image found. Please try again.")
             return
         }
 

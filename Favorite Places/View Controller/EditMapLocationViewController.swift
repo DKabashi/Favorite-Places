@@ -34,7 +34,7 @@ class EditMapLocationViewController: UIViewController {
     }
     
     private func setupView() {
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
     }
     
     private func setupBackButton() {

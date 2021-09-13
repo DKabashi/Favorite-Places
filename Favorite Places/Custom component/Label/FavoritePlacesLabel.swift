@@ -18,17 +18,17 @@ class FavoritePlacesLabel: UILabel {
         case .title:
             fontSize = 50
             fontWeight = .bold
-            textColor = .darkGray
+            textColor = .label
             numberOfLines = 2
             minimumScaleFactor = 0.9
         case .description:
             fontSize = 30
             numberOfLines = 4
-            textColor = .gray
+            textColor = .label
         case .bold:
             fontSize = 30
             fontWeight = .bold
-            textColor = .darkGray
+            textColor = .label
         }
         adjustsFontSizeToFitWidth = true
         font = .systemFont(ofSize: fontSize, weight: fontWeight)

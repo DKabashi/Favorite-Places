@@ -21,11 +21,11 @@ class LoginViewController: UIViewController {
         observeSigninRequest()
         observeUserState()
         observeAlternativeAuthRequest()
+        observeInvalidCredentials()
     }
     
     private func setupView() {
-        view.backgroundColor = .white
-
+        view.backgroundColor = .systemBackground
     }
     
     private func setupAuthenticationView() {
@@ -43,12 +43,17 @@ class LoginViewController: UIViewController {
     private func observeUserState() {
         authenticationManager.state.subscribe(onNext: { [weak self] state in
             guard let self = self else { return }
+            self.authenticationView.activityStopAnimating()
             switch state {
             case .success(user: let user):
                 if user != nil {
                     self.switchRootViewController()
                 }
             case .fail(error: let error):
+                guard !error.localizedDescription.contains("Network error") else {
+                    self.presentAlert(title: "Failed to authenticate", message: "Please connect to stable internet connection in order to proceed.")
+                    return
+                }
                 self.presentAlert(title: "Failed to authenticate", message: error.localizedDescription)
             }
         }).disposed(by: disposeBag)
@@ -59,6 +64,13 @@ class LoginViewController: UIViewController {
             guard let self = self else { return }
             self.navigationController?.pushViewController(SignupViewController(), animated: true)
             self.removeFromParent()
+        }).disposed(by: disposeBag)
+    }
+    
+    private func observeInvalidCredentials() {
+        authenticationView.invalidCredentialsWithMessage.subscribe(onNext: {[weak self] message in
+            guard let self = self else { return }
+            self.presentAlert(title: "Invalid credentials", message: message)
         }).disposed(by: disposeBag)
     }
 }

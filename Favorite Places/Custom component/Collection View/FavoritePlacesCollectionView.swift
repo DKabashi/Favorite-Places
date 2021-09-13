@@ -11,7 +11,7 @@ class FavoritePlacesCollectionView: UICollectionView {
     init(parentView: UIView) {
         let collectionViewLayout = UICollectionView.createTwoColumnFlowLayout(in: parentView)
         super.init(frame: .zero, collectionViewLayout: collectionViewLayout)
-        backgroundColor = .white
+        backgroundColor = .systemBackground
         register(FavoritePlaceCollectionViewCell.self, forCellWithReuseIdentifier: "FavoritePlaceCell")
     }
     

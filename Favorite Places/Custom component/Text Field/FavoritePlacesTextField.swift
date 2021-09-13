@@ -16,6 +16,7 @@ class FavoritePlacesTextField: UITextField {
     init() {
         super.init(frame: .zero)
         backgroundColor = .customTextFieldBlue
+        textColor = .label
         layer.cornerRadius = .defaultCornerRadius
         font = .systemFont(ofSize: 28)
         let paddingRect = CGRect(x: 0, y: 0, width: 20, height: 30)

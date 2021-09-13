@@ -37,10 +37,10 @@ class GetImageFromURLViewController: UIViewController {
 
     private func setupContainerView() {
         view.add(containerView)
-        containerView.backgroundColor = .white
+        containerView.backgroundColor = .systemBackground
         containerView.layer.cornerRadius = 16
         containerView.layer.borderWidth = 2
-        containerView.layer.borderColor = UIColor.white.cgColor
+        containerView.layer.borderColor = UIColor.systemBackground.cgColor
         containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -.padding).isActive = true
         containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         containerView.widthAnchor.constraint(equalToConstant: 330).isActive = true

@@ -16,7 +16,7 @@ class FavoritePlacesButton: UIButton {
         titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .bold)
         switch style {
         case .outline:
-            backgroundColor = .white
+            backgroundColor = .systemBackground
             layer.borderWidth = 2
             layer.borderColor = UIColor.customLightBlue.cgColor
             setTitleColor(.customLightBlue, for: .normal)
@@ -24,7 +24,7 @@ class FavoritePlacesButton: UIButton {
             backgroundColor = .customLightBlue
             setTitleColor(.white, for: .normal)
         case .squareWithImage:
-            backgroundColor = .white
+            backgroundColor = .systemBackground
             contentVerticalAlignment = .fill
             contentHorizontalAlignment = .fill
             imageView?.contentMode = .scaleAspectFit

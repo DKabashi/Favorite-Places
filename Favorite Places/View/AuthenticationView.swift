@@ -21,13 +21,16 @@ class AuthenticationView: UIView {
     private let disposeBag = DisposeBag()
     private var topConstraint: NSLayoutConstraint?
     
+    let invalidCredentialsWithMessage = PublishRelay<String>()
     let authenticationRequestWithModel = PublishRelay<AuthenticationModel>()
     var isLogin: Bool
     let alternativeAuthenticationRequest = PublishRelay<Bool>()
     
+    
     init(isLogin: Bool) {
         self.isLogin = isLogin
         super.init(frame: .zero)
+        observeViewTap()
         setupTitleLabel()
         setupEmailLabel()
         setupEmailTextField()
@@ -37,6 +40,13 @@ class AuthenticationView: UIView {
         setupAlternativeAuthenticationLabel()
         setupAlternativeAuthenticationButton()
         if UIScreen.isIphone8PlusSizeOrLower { adjustViewBasedOnKeyboardAppearance() }
+    }
+    
+    private func observeViewTap() {
+        observeTap().subscribe(onNext: {[weak self] _ in
+            guard let self = self else { return }
+            self.endEditing(true)
+        }).disposed(by: disposeBag)
     }
     
     private func setupTitleLabel() {
@@ -113,10 +123,17 @@ class AuthenticationView: UIView {
     private func observeAuthenticationButtonTap() {
         authenticateButton.rx.tap.subscribe(onNext: { [weak self] _ in
             guard let self = self, let email = self.emailTextField.text, let password = self.passwordTextField.text else { return }
-            if email.contains("@") && password.count > 4 {
-                let authModel = AuthenticationModel(email: email, password: password)
-                self.authenticationRequestWithModel.accept(authModel)
+            guard email.isValidEmail() else {
+                self.invalidCredentialsWithMessage.accept("Plase enter a valid email.")
+                return
             }
+            guard password.count > 5 else {
+                self.invalidCredentialsWithMessage.accept("Your password should contain more than five characters")
+                return
+            }
+            self.activityStartAnimating()
+            let authModel = AuthenticationModel(email: email, password: password)
+            self.authenticationRequestWithModel.accept(authModel)
         }).disposed(by: disposeBag)
     }
     

@@ -34,6 +34,7 @@
 		81357A9826EE5C3700DF6766 /* FavoritePlacesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81357A9726EE5C3700DF6766 /* FavoritePlacesCollectionView.swift */; };
 		81357A9A26EF20B300DF6766 /* UIScreenExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81357A9926EF20B300DF6766 /* UIScreenExtension.swift */; };
 		81357A9C26EF492C00DF6766 /* EditMapLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81357A9B26EF492C00DF6766 /* EditMapLocationViewController.swift */; };
+		81357A9E26EF7A3600DF6766 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81357A9D26EF7A3600DF6766 /* StringExtension.swift */; };
 		81FA280326EBCE3F00251B65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA280226EBCE3F00251B65 /* AppDelegate.swift */; };
 		81FA280C26EBCE3F00251B65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81FA280B26EBCE3F00251B65 /* Assets.xcassets */; };
 		81FA280F26EBCE3F00251B65 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81FA280D26EBCE3F00251B65 /* LaunchScreen.storyboard */; };
@@ -99,6 +100,7 @@
 		81357A9726EE5C3700DF6766 /* FavoritePlacesCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePlacesCollectionView.swift; sourceTree = "<group>"; };
 		81357A9926EF20B300DF6766 /* UIScreenExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreenExtension.swift; sourceTree = "<group>"; };
 		81357A9B26EF492C00DF6766 /* EditMapLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMapLocationViewController.swift; sourceTree = "<group>"; };
+		81357A9D26EF7A3600DF6766 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		81FA27FF26EBCE3F00251B65 /* Favorite Places.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Favorite Places.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81FA280226EBCE3F00251B65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81FA280B26EBCE3F00251B65 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 				81146AF326ECEECD00EB6413 /* RxExtension.swift */,
 				81357A9426EE5B6A00DF6766 /* UICollectionViewExtension.swift */,
 				81357A9926EF20B300DF6766 /* UIScreenExtension.swift */,
+				81357A9D26EF7A3600DF6766 /* StringExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -534,6 +537,7 @@
 				81146AE526ECAD3500EB6413 /* AuthenticationState.swift in Sources */,
 				81357A7E26EDFB0D00DF6766 /* GetImageFromURLViewController.swift in Sources */,
 				81357A8F26EE527400DF6766 /* FavoritesListViewController.swift in Sources */,
+				81357A9E26EF7A3600DF6766 /* StringExtension.swift in Sources */,
 				81146AF026ECE9A700EB6413 /* MapView.swift in Sources */,
 				81146ADF26ECA24A00EB6413 /* AuthenticationModel.swift in Sources */,
 				81146AE726ECADCF00EB6413 /* FavoritePlacesError.swift in Sources */,
