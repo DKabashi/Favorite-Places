@@ -19,6 +19,7 @@ class AuthenticationView: UIView {
     private let alternativeAuthenticationLabel = FavoritePlacesLabel(type: .description)
     private let alternativeAuthenticationButton = UIButton()
     private let disposeBag = DisposeBag()
+    private var topConstraint: NSLayoutConstraint?
     
     let authenticationRequestWithModel = PublishRelay<AuthenticationModel>()
     var isLogin: Bool
@@ -33,12 +34,14 @@ class AuthenticationView: UIView {
         setupPasswordTextField()
         setupAuthenticateButton()
         setupAlternativeAuthenticationText()
+        if UIScreen.isIphone8PlusSizeOrLower { adjustViewBasedOnKeyboardAppearance() }
     }
     
     private func setupTitleLabel() {
         add(titleLabel)
         titleLabel.text = isLogin ? "Welcome\nBack" : "Create\nAccount"
-        titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: UIScreen.isIphone8PlusSizeOrLower ? 0 : .padding).isActive = true
+        topConstraint = titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: UIScreen.isIphone8PlusSizeOrLower ? 0 : .padding)
+        topConstraint?.isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: .padding).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -.padding).isActive = true
         titleLabel.heightAnchor.constraint(equalToConstant: 120).isActive = true
@@ -130,6 +133,25 @@ class AuthenticationView: UIView {
         alternativeAuthenticationButton.leadingAnchor.constraint(equalTo: alternativeAuthenticationLabel.trailingAnchor).isActive = true
         alternativeAuthenticationButton.heightAnchor.constraint(equalTo: alternativeAuthenticationLabel.heightAnchor).isActive = true
         alternativeAuthenticationButton.topAnchor.constraint(equalTo: alternativeAuthenticationLabel.topAnchor).isActive = true
+    }
+    
+    private func adjustViewBasedOnKeyboardAppearance() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(sender:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(sender: NSNotification) {
+        topConstraint?.constant = -40
+        UIView.animate(withDuration: 0.3) {
+            self.layoutIfNeeded()
+        }
+    }
+
+    @objc func keyboardWillHide(sender: NSNotification) {
+        topConstraint?.constant = 0
+        UIView.animate(withDuration: 0.3) {
+            self.layoutIfNeeded()
+        }
     }
     
     required init?(coder: NSCoder) {
