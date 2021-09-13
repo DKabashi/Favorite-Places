@@ -104,7 +104,7 @@ class MapView: MKMapView {
         }
      
         if let location = locationManager?.location?.coordinate {
-            let region = MKCoordinateRegion.init(center: location, latitudinalMeters: 4000, longitudinalMeters: 4000)
+            let region = MKCoordinateRegion.init(center: location, latitudinalMeters: 300, longitudinalMeters: 300)
             setRegion(region, animated: true)
         }
     }
@@ -130,6 +130,7 @@ extension MapView: MKMapViewDelegate {
         }
         let annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "favoritePlacesAnnotation")
         annotationView.markerTintColor = .customLightBlue
+        annotationView.clusteringIdentifier = "favoritePlacesCluster"
         if let annotation = annotation as? FavoritePlace, let image = UIImage(data: annotation.imageData) {
             annotationView.canShowCallout = true
             let imageView = UIImageView(image: image)
@@ -140,6 +141,11 @@ extension MapView: MKMapViewDelegate {
             annotationView.detailCalloutAccessoryView = imageView
         }
         return annotationView
+    }
+    
+    func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
+        let userLocation = mapView.view(for: mapView.userLocation)
+        userLocation?.isEnabled = false
     }
     
     private func checkLocationAuthorization() {
