@@ -29,6 +29,7 @@ class MapViewController: UIViewController {
         setupFavoritePlacesButton()
         observeAddFavoritePlaceRequest()
         observeNewFavoritePlaces()
+        observeDeniedLocationAuthorization()
     }
     
     private func setupMapView() {
@@ -54,7 +55,7 @@ class MapViewController: UIViewController {
     private func setupHelpButton() {
         mapView.add(helpButton)
         helpButton.setImage(.help, for: .normal)
-        helpButton.topAnchor.constraint(equalTo: view.topAnchor, constant: .padding * 4).isActive = true
+        helpButton.topAnchor.constraint(equalTo: view.topAnchor, constant: UIScreen.isIphone6Size ? .padding * 2: .padding * 4).isActive = true
         helpButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .padding).isActive = true
         helpButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
         helpButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
@@ -63,7 +64,7 @@ class MapViewController: UIViewController {
     private func setupUserButton() {
         mapView.add(userButton)
         userButton.setImage(.person, for: .normal)
-        userButton.topAnchor.constraint(equalTo: view.topAnchor, constant: .padding * 4).isActive = true
+        userButton.topAnchor.constraint(equalTo: view.topAnchor, constant: UIScreen.isIphone6Size ? .padding * 2 : .padding * 4).isActive = true
         userButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -.padding).isActive = true
         userButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
         userButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
@@ -82,7 +83,7 @@ class MapViewController: UIViewController {
     private func setupLocationButton() {
         mapView.add(locationButton)
         locationButton.setImage(.locationOn, for: .normal)
-        locationButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -.padding * 4).isActive = true
+        locationButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: UIScreen.isIphone6Size ? -.padding * 2 : -.padding * 4).isActive = true
         locationButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .padding).isActive = true
         locationButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
         locationButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
@@ -99,7 +100,7 @@ class MapViewController: UIViewController {
     private func setupFavoritePlacesButton() {
         mapView.add(favoritePlacesButton)
         favoritePlacesButton.setImage(.favorites, for: .normal)
-        favoritePlacesButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -.padding * 4).isActive = true
+        favoritePlacesButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: UIScreen.isIphone6Size ? -.padding * 2 : -.padding * 4).isActive = true
         favoritePlacesButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -.padding).isActive = true
         favoritePlacesButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
         favoritePlacesButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
@@ -130,6 +131,13 @@ class MapViewController: UIViewController {
         newFavoritePlace.subscribe(onNext: { [weak self] favoritePlace in
             guard let self = self else { return }
             self.mapView.addAnnotation(favoritePlace)
+        }).disposed(by: disposeBag)
+    }
+    
+    private func observeDeniedLocationAuthorization() {
+        mapView.deniedLocationAuthorizaton.subscribe(onNext: { [weak self] _ in
+            guard let self = self else { return }
+            self.presentAlert(title: "Go to user location failed", message: "Allow user location tracking authorization in settings to use this feature.")
         }).disposed(by: disposeBag)
     }
 }

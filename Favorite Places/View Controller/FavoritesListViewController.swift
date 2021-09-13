@@ -118,6 +118,17 @@ class FavoritesListViewController: UIViewController {
             self.selectedFavoritePlace.accept(favoritePlace)
             self.dismiss(animated: true)
         }).disposed(by: disposeBag)
+        
+        view.observeLongPress().subscribe(onNext: {[weak self] longPressGesture in
+            guard let self = self else { return }
+            guard longPressGesture.state == .ended else {
+                return
+            }
+            let gestureLocation = longPressGesture.location(in: self.favoritesListCollectionView)
+            if let indexPath = self.favoritesListCollectionView.indexPathForItem(at: gestureLocation), let favoritePlaceCell = self.favoritesListCollectionView.cellForItem(at: indexPath) as? FavoritePlaceCollectionViewCell {
+                print(favoritePlaceCell.favoritePlace)
+            }
+        }).disposed(by: disposeBag)
     }
     
     private func observeBackButtonTap() {

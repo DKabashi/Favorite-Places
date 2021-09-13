@@ -17,6 +17,7 @@ class MapView: MKMapView {
     
     let annotationRequestWithCoordinates = PublishRelay<CLLocationCoordinate2D>()
     let selectedFavoritePlace = PublishRelay<FavoritePlace>()
+    let deniedLocationAuthorizaton = PublishRelay<Bool>()
     
     init() {
         super.init(frame: .zero)
@@ -79,6 +80,12 @@ class MapView: MKMapView {
             setupLocationManager()
         }
         
+        let authorizationStatus = CLLocationManager.authorizationStatus()
+        if authorizationStatus == .denied || authorizationStatus == .notDetermined || authorizationStatus != .restricted {
+            deniedLocationAuthorizaton.accept(true)
+            return
+        }
+     
         if let location = locationManager?.location?.coordinate {
             let region = MKCoordinateRegion.init(center: location, latitudinalMeters: 4000, longitudinalMeters: 4000)
             setRegion(region, animated: true)

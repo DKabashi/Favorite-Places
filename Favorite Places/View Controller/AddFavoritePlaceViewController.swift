@@ -26,6 +26,7 @@ class AddFavoritePlaceViewController: UIViewController {
     private let persistanceManager = PersistenceManager()
     private var favoritePlace: FavoritePlace?
     
+    var isEditingMode: Bool = false
     let additionSucceededWithFavoritePlace = PublishRelay<FavoritePlace>()
     
     var latitude: Double!
@@ -94,7 +95,7 @@ class AddFavoritePlaceViewController: UIViewController {
     private func setupLocationNameLabel() {
         view.add(locationNameLabel)
         locationNameLabel.text = "Name of location (Optional):"
-        locationNameLabel.topAnchor.constraint(equalTo: previewUploadImageView.bottomAnchor, constant: .padding * 3).isActive = true
+        locationNameLabel.topAnchor.constraint(equalTo: previewUploadImageView.bottomAnchor, constant: UIScreen.isIphone6Size ? .padding : .padding * 3).isActive = true
         locationNameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .padding).isActive = true
         locationNameLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
     }
@@ -117,7 +118,7 @@ class AddFavoritePlaceViewController: UIViewController {
     private func setupUploadLabel() {
         view.add(uploadLabel)
         uploadLabel.text = "Upload image from:"
-        uploadLabel.topAnchor.constraint(equalTo: locationNameTextField.bottomAnchor, constant: .padding * 3).isActive = true
+        uploadLabel.topAnchor.constraint(equalTo: locationNameTextField.bottomAnchor, constant: UIScreen.isIphone6Size ? .padding : .padding * 3).isActive = true
         uploadLabel.leadingAnchor.constraint(equalTo: locationNameTextField.leadingAnchor).isActive = true
         uploadLabel.trailingAnchor.constraint(equalTo: locationNameTextField.trailingAnchor).isActive = true
         uploadLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
@@ -181,7 +182,7 @@ class AddFavoritePlaceViewController: UIViewController {
     private func setupAddFavoritePlaceButton() {
         view.add(addFavoritePlaceButton)
         addFavoritePlaceButton.setTitle("Add favorite place", for: .normal)
-        addFavoritePlaceButton.topAnchor.constraint(equalTo: uploadButtonsStackView.bottomAnchor, constant: .padding * 3).isActive = true
+        addFavoritePlaceButton.topAnchor.constraint(equalTo: uploadButtonsStackView.bottomAnchor, constant: UIScreen.isIphone6Size ? .padding : .padding * 3).isActive = true
         addFavoritePlaceButton.leadingAnchor.constraint(equalTo: uploadButtonsStackView.leadingAnchor).isActive = true
         addFavoritePlaceButton.trailingAnchor.constraint(equalTo: uploadButtonsStackView.trailingAnchor).isActive = true
         addFavoritePlaceButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
