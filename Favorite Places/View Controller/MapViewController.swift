@@ -67,7 +67,7 @@ class MapViewController: UIViewController {
     private func observeHelpButtonTap() {
         helpButton.rx.tap.subscribe(onNext: {[weak self] _ in
             guard let self = self else { return }
-            self.presentAlert(title: "Welcome", message: "🔹 Tap and hold in the map to add a new favorite location.\n🔹 Tap the person icon to view your email address or to sign out.\n🔹 Tap the location icon to go to your location.\n🔹 Tap the star icon to view the list of your favorite locations.", isBigAlert: true)
+            self.presentAlert(title: "Welcome", message: "🔹 Tap and hold in the map to add a new favorite location.\n🔹 Tap the person icon to view your email address or to sign out.\n🔹 Tap the location icon to go to your location.\n🔹 Tap the star icon to view the list of your favorite locations.\n🔹 The app is available in light and dark mode.", isBigAlert: true)
         }).disposed(by: disposeBag)
     }
     
