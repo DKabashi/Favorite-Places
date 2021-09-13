@@ -16,7 +16,7 @@ class FavoritePlacesNavigationController: UINavigationController {
         navigationBar.isTranslucent = true
         view.backgroundColor = UIColor.clear
         navigationBar.tintColor = .customLightBlue
-        
+        navigationItem.backBarButtonItem?.title = ""
         if AuthenticationManager.isAuthenticated {
             viewControllers = [MapViewController()]
         } else {

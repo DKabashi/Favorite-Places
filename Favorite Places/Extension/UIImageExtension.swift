@@ -18,4 +18,6 @@ extension UIImage {
     static let camera = UIImage(systemName: "camera.fill")!
     static let photoLibrary = UIImage(systemName: "photo.fill.on.rectangle.fill")!
     static let globe = UIImage(systemName: "globe")!
+    static let eyeOpened = UIImage(systemName: "eye")!
+    static let eyeClosed = UIImage(systemName: "eye.slash")!
 }

@@ -20,10 +20,12 @@ class LoginViewController: UIViewController {
         setupAuthenticationView()
         observeSigninRequest()
         observeUserState()
+        observeAlternativeAuthRequest()
     }
     
     private func setupView() {
         view.backgroundColor = .white
+
     }
     
     private func setupAuthenticationView() {
@@ -49,6 +51,14 @@ class LoginViewController: UIViewController {
             case .fail(error: let error):
                 self.presentAlert(title: "Failed to authenticate", message: error.localizedDescription)
             }
+        }).disposed(by: disposeBag)
+    }
+    
+    private func observeAlternativeAuthRequest() {
+        authenticationView.alternativeAuthenticationRequest.subscribe(onNext: {[weak self] _ in
+            guard let self = self else { return }
+            self.navigationController?.pushViewController(SignupViewController(), animated: true)
+            self.removeFromParent()
         }).disposed(by: disposeBag)
     }
 }

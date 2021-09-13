@@ -23,6 +23,7 @@ class AuthenticationView: UIView {
     
     let authenticationRequestWithModel = PublishRelay<AuthenticationModel>()
     var isLogin: Bool
+    let alternativeAuthenticationRequest = PublishRelay<Bool>()
     
     init(isLogin: Bool) {
         self.isLogin = isLogin
@@ -33,7 +34,8 @@ class AuthenticationView: UIView {
         setupPasswordLabel()
         setupPasswordTextField()
         setupAuthenticateButton()
-        setupAlternativeAuthenticationText()
+        setupAlternativeAuthenticationLabel()
+        setupAlternativeAuthenticationButton()
         if UIScreen.isIphone8PlusSizeOrLower { adjustViewBasedOnKeyboardAppearance() }
     }
     
@@ -92,7 +94,7 @@ class AuthenticationView: UIView {
     
     private func setupPasswordTextField() {
         add(passwordTextField)
-        passwordTextField.isSecureTextEntry = true
+        passwordTextField.configureForPassword()
         passwordTextField.topAnchor.constraint(equalTo: passwordLabel.bottomAnchor, constant: .padding / 2).isActive = true
         passwordTextField.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).isActive = true
         passwordTextField.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor).isActive = true
@@ -118,23 +120,33 @@ class AuthenticationView: UIView {
         }).disposed(by: disposeBag)
     }
     
-    private func setupAlternativeAuthenticationText() {
+    private func setupAlternativeAuthenticationLabel() {
         add(alternativeAuthenticationLabel)
-        add(alternativeAuthenticationButton)
-        
         alternativeAuthenticationLabel.font = .systemFont(ofSize: 20)
         alternativeAuthenticationLabel.text = isLogin ? "Don't have an account?" : "Already have an account?"
         alternativeAuthenticationLabel.topAnchor.constraint(equalTo: authenticateButton.bottomAnchor, constant: .padding).isActive = true
         alternativeAuthenticationLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).isActive = true
-        alternativeAuthenticationButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        alternativeAuthenticationLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+    }
+    
+    private func setupAlternativeAuthenticationButton() {
+        add(alternativeAuthenticationButton)
         
         alternativeAuthenticationButton.setTitle(isLogin ? "Sign up" : "Log in", for: .normal)
         alternativeAuthenticationButton.setTitleColor(.customLightBlue, for: .normal)
         alternativeAuthenticationButton.leadingAnchor.constraint(equalTo: alternativeAuthenticationLabel.trailingAnchor).isActive = true
         alternativeAuthenticationButton.heightAnchor.constraint(equalTo: alternativeAuthenticationLabel.heightAnchor).isActive = true
         alternativeAuthenticationButton.topAnchor.constraint(equalTo: alternativeAuthenticationLabel.topAnchor).isActive = true
+        observeAlternativeButtonTap()
     }
     
+    private func observeAlternativeButtonTap() {
+        alternativeAuthenticationButton.rx.tap.subscribe(onNext: { [weak self] _ in
+            guard let self = self else { return }
+            self.alternativeAuthenticationRequest.accept(true)
+        }).disposed(by: disposeBag)
+    }
+
     private func adjustViewBasedOnKeyboardAppearance() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(sender:)), name: UIResponder.keyboardWillHideNotification, object: nil)

@@ -29,13 +29,18 @@ class LandingViewController: UIViewController {
         setupLoginButton()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = true
+    }
+    
     private func setupView() {
         view.backgroundColor = .white
     }
     
     private func setupMapImageView() {
         view.add(mapImageView)
-        mapImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        mapImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 44).isActive = true
         mapImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         mapImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         mapImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.4).isActive = true
@@ -79,6 +84,7 @@ class LandingViewController: UIViewController {
         signupButton.rx.tap.subscribe(onNext: {[weak self] _ in
             guard let self = self else { return }
             self.signupButton.clickAnimation()
+            self.navigationController?.isNavigationBarHidden = false
             self.navigationController?.pushViewController(SignupViewController(), animated: true)
         }).disposed(by: disposeBag)
     }
@@ -101,6 +107,7 @@ class LandingViewController: UIViewController {
         loginButton.rx.tap.subscribe(onNext: {[weak self] _ in
             guard let self = self else { return }
             self.loginButton.clickAnimation()
+            self.navigationController?.isNavigationBarHidden = false
             self.navigationController?.pushViewController(LoginViewController(), animated: true)
         }).disposed(by: disposeBag)
     }

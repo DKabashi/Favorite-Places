@@ -21,6 +21,7 @@ class SignupViewController: UIViewController {
         setupAuthenticationView()
         observeSignupRequest()
         observeUserState()
+        observeAlternativeAuthRequest()
     }
     
     private func setupView() {
@@ -50,6 +51,14 @@ class SignupViewController: UIViewController {
             case .fail(error: let error):
                 self.presentAlert(title: "Failed to create account", message: error.localizedDescription)
             }
+        }).disposed(by: disposeBag)
+    }
+    
+    private func observeAlternativeAuthRequest() {
+        authenticationView.alternativeAuthenticationRequest.subscribe(onNext: {[weak self] _ in
+            guard let self = self else { return }
+            self.navigationController?.pushViewController(LoginViewController(), animated: true)
+            self.removeFromParent()
         }).disposed(by: disposeBag)
     }
 }
