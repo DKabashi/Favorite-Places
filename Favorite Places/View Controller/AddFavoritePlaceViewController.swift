@@ -196,15 +196,18 @@ class AddFavoritePlaceViewController: UIViewController {
     private func observeAddFavoritePlaceButtonTap() {
         addFavoritePlaceButton.rx.tap.subscribe(onNext: { [weak self] _ in
             guard let self = self else { return }
-            if let image = self.previewUploadImageView.image?.pngData() {
-                let favoritePlace = FavoritePlace(title: self.locationNameTextField.text, latitude: self.latitude, longitude: self.longitude, imageData: image)
-                self.favoritePlace = favoritePlace
-                self.persistanceManager.updateWith(favorite: favoritePlace, actionType: .add)
-            } else {
-                self.presentAlert(title: "Add favorite place failed", message: "You need to upload an image for this favorite place.")
-            }
-            
+            self.isEditingMode ? self.editFavoritePlace() : self.addFavoritePlace()
         }).disposed(by: disposeBag)
+    }
+    
+    private func addFavoritePlace() {
+        if let image = previewUploadImageView.image?.pngData() {
+            let favoritePlace = FavoritePlace(title: locationNameTextField.text, latitude: latitude, longitude: longitude, imageData: image)
+            self.favoritePlace = favoritePlace
+            persistanceManager.updateWith(favorite: favoritePlace, actionType: .add)
+        } else {
+            presentAlert(title: "Add favorite place failed", message: "You need to upload an image for this favorite place.")
+        }
     }
     
     private func observeImageFromURL() {
@@ -244,7 +247,6 @@ class AddFavoritePlaceViewController: UIViewController {
                 self.dismiss(animated: true)
                 self.favoritePlaceItemChanged.accept(true)
             }
-           
         }).disposed(by: disposeBag)
     }
     
@@ -252,6 +254,8 @@ class AddFavoritePlaceViewController: UIViewController {
         guard let favoritePlace = favoritePlace else {
             return
         }
+        latitude = favoritePlace.latitude
+        longitude = favoritePlace.longitude
         previewUploadImageView.image = UIImage(data: favoritePlace.imageData)
         locationNameTextField.text = favoritePlace.title
         setupDeleteButton()
@@ -278,6 +282,18 @@ class AddFavoritePlaceViewController: UIViewController {
                 self.persistanceManager.updateWith(favorite: favoritePlace, actionType: .remove)
             }, alternativeButtonCallback: nil)
         }).disposed(by: disposeBag)
+    }
+    
+    private func editFavoritePlace() {
+        if let image = previewUploadImageView.image?.pngData() {
+            self.favoritePlace?.longitude = longitude
+            self.favoritePlace?.imageData = image
+            self.favoritePlace?.latitude = latitude
+            self.favoritePlace?.title = locationNameTextField.text
+            persistanceManager.updateWith(favorite: self.favoritePlace!, actionType: .edit)
+        } else {
+            presentAlert(title: "Edit favorite place failed", message: "You need to upload an image for this favorite place.")
+        }
     }
     
     private func setupChangeLocationButton() {

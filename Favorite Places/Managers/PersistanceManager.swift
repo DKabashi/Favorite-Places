@@ -33,7 +33,14 @@ class PersistenceManager {
                 case .remove:
                     favorites.removeAll { $0.id == favorite.id }
                 case .edit:
-                    #warning("implement")
+                    favorites.forEach {
+                        if $0.id == favorite.id {
+                            $0.imageData = favorite.imageData
+                            $0.latitude = favorite.latitude
+                            $0.longitude = favorite.longitude
+                            $0.title = favorite.title
+                        }
+                    }
                 }
                 self.save(favorites: favorites)
                 

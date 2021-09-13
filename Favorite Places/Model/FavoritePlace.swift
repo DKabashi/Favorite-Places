@@ -12,8 +12,8 @@ class FavoritePlace: NSObject, Codable {
     let id: String
     var latitude: Double
     var longitude: Double
-    let title: String?
-    let imageData: Data
+    var title: String?
+    var imageData: Data
     let user: User
     
     init(title: String?, latitude: Double, longitude: Double, imageData: Data) {
